@@ -30,20 +30,12 @@ PACKAGE_NAME = 'webots_ros2_universal_robot'
 
 def generate_launch_description():
     package_dir = get_package_share_directory(PACKAGE_NAME)
-    # robot_description_path = os.path.join(package_dir, 'resource', 'ur5e_with_gripper.urdf')
     robot_description_path = os.path.join(package_dir, 'resource', 'asmb_robot.urdf')
-    ros2_control_params = os.path.join(package_dir, 'resource', 'ros2_control_config.yaml')
+    ros2_control_params = os.path.join(package_dir, 'resource', 'ros2_control_config_asmb_robot.yaml')
 
     # Define your URDF robots here
     # The name of an URDF robot has to match the name of the robot of the driver node
     # You can specify the URDF file to use with "urdf_path"
-    # spawn_URDF_ur5e = URDFSpawner(
-    #     name='UR5e', #此处修改模型名
-    #     urdf_path=robot_description_path,
-    #     translation='0 0 0.6',
-    #     rotation='0 0 1 -1.5708',
-    # )
-
     spawn_URDF_asmbrobot = URDFSpawner(
         name='asmb_robot', #此处修改模型名
         urdf_path=robot_description_path,
@@ -53,20 +45,9 @@ def generate_launch_description():
 
     # Driver nodes
     # When having multiple robot it is mandatory to specify the robot name.
-    # universal_robot_driver = WebotsController(
-    #     robot_name='UR5e',
-    #     namespace='ur5e',
-    #     parameters=[
-    #         {'robot_description': robot_description_path},
-    #         {'use_sim_time': True},
-    #         {'set_robot_state_publisher': True},
-    #         #ros2_control_params
-    #     ],
-    # )
-
     universal_robot_driver = WebotsController(
         robot_name='asmb_robot',
-        namespace='ur5e',
+        namespace='asmbrobot',
         parameters=[
             {'robot_description': robot_description_path},
             {'use_sim_time': True},
@@ -85,7 +66,7 @@ def generate_launch_description():
         executable='spawner',
         output='screen',
         prefix=controller_manager_prefix,
-        arguments=['ur_joint_trajectory_controller', '-c', 'ur5e/controller_manager'] + controller_manager_timeout,
+        arguments=['ur_joint_trajectory_controller', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
     )
 
     # 启动关节状态广播器，用于发布机器人的关节状态信息
@@ -94,13 +75,13 @@ def generate_launch_description():
         executable='spawner',
         output='screen',
         prefix=controller_manager_prefix,
-        arguments=['ur_joint_state_broadcaster', '-c', 'ur5e/controller_manager'] + controller_manager_timeout,
+        arguments=['ur_joint_state_broadcaster', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
     )
 
     # 发布机器人的整体状态，包括TF变换
     robot_state_publisher = Node(
         package='robot_state_publisher',
-        namespace='ur5e',
+        namespace='asmbrobot',
         executable='robot_state_publisher',
         output='screen',
         parameters=[{
