@@ -12,12 +12,16 @@ data_files.append(('share/' + package_name + '/launch', [
     'launch/robot_launch/robot_world_launch.py',
     'launch/robot_launch/robot_moveit_nodes_launch.py',
     'launch/multirobot_launch.py',
+    'launch/robot_launch/asmb_robot_nodes_launch.py',
+    'launch/robot_launch/asmb_robot_world_launch.py',
 ]))
 data_files.append(('share/' + package_name + '/worlds', [
     'worlds/universal_robot.wbt',
     'worlds/.universal_robot.wbproj',
     'worlds/robotic_arms.wbt',
-    'worlds/.robotic_arms.wbproj'
+    'worlds/.robotic_arms.wbproj',
+    'worlds/asmb_robot.wbt',
+    'worlds/.asmb_robot.wbproj',
 ]))
 data_files.append(('share/' + package_name, [
     'package.xml'
