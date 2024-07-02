@@ -11,13 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+#                      为ABB IRB4600机器人创建一个轨迹跟踪客户端，用于多机器人演示
 """Trajectory follower client for the ABB irb4600 robot used for multi-robot demonstration."""
 
 import rclpy
+
+# 从指定模块导入 FollowJointTrajectoryClient 类，用于发送关节轨迹目标给机器人控制器。
 from webots_ros2_universal_robot.follow_joint_trajectory_client import FollowJointTrajectoryClient
 
-
+#定义了一个字典GOAL，里面包含了机器人的关节轨迹信息。具体来说：
+#'joint_names' 列出了参与轨迹控制的关节名称。
+#'points' 是一系列轨迹点，每个点定义了各个关节在特定时间点的位置和到达该点所需的时间。
 GOAL = {
     'joint_names': [
         'A motor',
@@ -69,11 +73,16 @@ GOAL = {
 }
 
 
-def main(args=None):
-    rclpy.init(args=args)
-    controller = FollowJointTrajectoryClient('abb_controller', '/abb/abb_joint_trajectory_controller')
+def main(args=None): 
+    rclpy.init(args=args) 
 
+    # 创建一个FollowJointTrajectoryClient实例，指定控制器名称和ROS服务主题路径，用于与机器人控制器通信
+    controller = FollowJointTrajectoryClient('abb_controller', '/abb/abb_joint_trajectory_controller')
+    
+    # 向控制器发送轨迹目标GOAL，其中10是超时时间（单位为秒）。
     controller.send_goal(GOAL, 10)
+    
+    # 启动一个循环，让节点保持活动状态，等待并处理ROS2通信事件，直到节点被显式关闭。
     rclpy.spin(controller)
 
 

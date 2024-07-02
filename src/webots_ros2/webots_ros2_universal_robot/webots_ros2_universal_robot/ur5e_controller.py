@@ -15,9 +15,13 @@
 """Trajectory follower client for the UR5 robot used for multi-robot demonstration."""
 
 import rclpy
-from webots_ros2_universal_robot.follow_joint_trajectory_client import FollowJointTrajectoryClient  #跟随关节轨迹客户端
 
+# 从指定模块导入 FollowJointTrajectoryClient 类，用于发送关节轨迹目标给机器人控制器。
+from webots_ros2_universal_robot.follow_joint_trajectory_client import FollowJointTrajectoryClient
 
+#定义了一个字典GOAL，里面包含了机器人的关节轨迹信息。具体来说：
+#'joint_names' 列出了参与轨迹控制的关节名称。
+#'points' 是一系列轨迹点，每个点定义了各个关节在特定时间点的位置和到达该点所需的时间。
 GOAL = {
     'joint_names': [
         'shoulder_pan_joint',
@@ -67,8 +71,11 @@ GOAL = {
 
 def main(args=None):
     rclpy.init(args=args)
+
+    # 创建一个FollowJointTrajectoryClient实例，指定控制器名称和ROS服务主题路径，用于与机器人控制器通信
     controller = FollowJointTrajectoryClient('ur5e_controller', '/ur5e/ur_joint_trajectory_controller')
 
+    # 向控制器发送轨迹目标GOAL，其中10是超时时间（单位为秒）。
     controller.send_goal(GOAL, 10)
     rclpy.spin(controller)
 

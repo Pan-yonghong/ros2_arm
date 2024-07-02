@@ -22,18 +22,20 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch.substitutions.path_join_substitution import PathJoinSubstitution
-from webots_ros2_driver.webots_launcher import WebotsLauncher
+from webots_ros2_driver.webots_launcher import WebotsLauncher   # webots_ros2_driver包中的WebotsLauncher类，用于启动Webots
 
 
 PACKAGE_NAME = 'webots_ros2_universal_robot'
 
 
 def generate_launch_description():
-    package_dir = get_package_share_directory(PACKAGE_NAME)
-    world = LaunchConfiguration('world')
+    package_dir = get_package_share_directory(PACKAGE_NAME)     # 获取该ROS2包的共享目录路径
+    world = LaunchConfiguration('world')                        # 创建一个LaunchConfiguration对象，名为world
 
-    # Starts Webots
+    # 初始化Webots启动器：创建WebotsLauncher实例，用于启动Webots仿真。
     webots = WebotsLauncher(
+        # 它指定了要加载的世界文件路径（通过拼接package_dir、worlds/和world配置得到）
+        # 并且设置了ros2_supervisor为True，意味着Webots中的ROS2 Supervisor会被启用
         world=PathJoinSubstitution([package_dir, 'worlds', world]),
         ros2_supervisor=True
     )
@@ -44,9 +46,10 @@ def generate_launch_description():
             default_value='universal_robot.wbt',
             description='Choose one of the world files from `/webots_ros2_universal_robot/worlds` directory'
         ),
-        webots,
+        webots,                 # 添加之前定义的 webots 实例到启动序列中
         webots._supervisor,
         # This action will kill all nodes once the Webots simulation has exited
+        # 当Webots进程退出时，注册的事件处理器会触发，发送一个Shutdown事件，导致所有由当前launch文件启动的节点关闭，确保干净的退出过程。
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(
                 target_action=webots,

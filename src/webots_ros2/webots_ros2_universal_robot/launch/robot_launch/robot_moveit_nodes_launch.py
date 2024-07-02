@@ -73,6 +73,8 @@ def generate_launch_description():
         )
 
         # MoveIt2 node
+        # 这里定义了一个字典，其中键为 'move_group'，值则是通过加载名为 moveit_movegroup.yaml 的YAML配置文件得到的内容。
+        # 这个YAML文件通常包含了对move_group节点的各种配置信息，比如规划管道、机器人模型详情、规划组、运动学求解器等，这些都是进行运动规划所必需的参数。
         movegroup = {'move_group': load_yaml('moveit_movegroup.yaml')}
         moveit_controllers = {
             'moveit_controller_manager': 'moveit_simple_controller_manager/MoveItSimpleControllerManager',
@@ -96,7 +98,6 @@ def generate_launch_description():
             )
         )
     else:
-        launch_description_nodes.append(LogInfo(msg='"moveit" package is not installed, \
-                                                please install it in order to run this demo.'))
+        launch_description_nodes.append(LogInfo(msg='"moveit" package is not installed, please install it in order to run this demo.'))
 
     return LaunchDescription(launch_description_nodes)

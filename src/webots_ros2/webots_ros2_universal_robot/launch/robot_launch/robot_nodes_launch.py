@@ -15,7 +15,7 @@
 # limitations under the License.
 
 """Launch Webots Universal Robot simulation nodes."""
-import sys
+
 import os
 import launch
 from launch_ros.actions import Node
