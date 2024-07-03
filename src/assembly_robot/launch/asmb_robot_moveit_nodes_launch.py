@@ -26,7 +26,7 @@ from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory, get_packages_with_prefixes
 
 
-PACKAGE_NAME = 'webots_ros2_universal_robot'
+PACKAGE_NAME = 'assembly_robot'
 
 
 def generate_launch_description():
@@ -50,12 +50,12 @@ def generate_launch_description():
 
         # Configuration
         description = {'robot_description': load_file('asmb_robot.urdf')}
-        description_semantic = {'robot_description_semantic': load_file('moveit_ur5e.srdf')}
-        description_kinematics = {'robot_description_kinematics': load_yaml('moveit_kinematics.yaml')}
+        description_semantic = {'robot_description_semantic': load_file('asmb_robot.srdf')}
+        description_kinematics = {'robot_description_kinematics': load_yaml('kinematics.yaml')}
         sim_time = {'use_sim_time': True}   # Ros2Supervisor 节点负责获取 Webots 仿真时间并将其发布到 /clock 主题
 
         # Rviz node
-        rviz_config_file = os.path.join(package_dir, 'resource', 'moveit_visualization.rviz')
+        rviz_config_file = os.path.join(package_dir, 'resource', 'moveit.rviz')
 
         launch_description_nodes.append(
             Node(

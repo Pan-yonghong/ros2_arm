@@ -11,13 +11,9 @@ data_files.append(('share/' + package_name + '/launch', [
     'launch/asmb_robot_world_launch.py',
     'launch/asmb_robot_moveit_nodes_launch.py',
 ]))
-data_files.append(('share/' + package_name + '/worlds', [
-    'worlds/asmb_robot.wbt',
-]))
-data_files.append(('share/' + package_name, [
-    'package.xml'
-]))
-data_files.append(('share/' + package_name + '/urdf', ['urdf/asmb_robot.urdf']))    #路径
+data_files.append(('share/' + package_name + '/worlds', ['worlds/asmb_robot.wbt',]))
+data_files.append(('share/' + package_name,             ['package.xml']))
+data_files.append(('share/' + package_name + '/urdf',   ['urdf/asmb_robot.urdf']))    #路径
 
 # 遍历resource目录下的所有子目录和文件（排除名为package_name的特殊文件或目录），
 # 并将这些资源文件复制到安装路径的相应位置，确保所有资源文件都被正确安装

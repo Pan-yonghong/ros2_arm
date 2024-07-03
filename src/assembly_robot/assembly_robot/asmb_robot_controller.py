@@ -80,7 +80,7 @@ def main(args=None):
     rclpy.init(args=args)
 
     # 创建一个FollowJointTrajectoryClient实例，指定控制器名称和ROS服务主题路径，用于与机器人控制器通信
-    controller = FollowJointTrajectoryClient('asmbrobot_controller', '/asmbrobot/ur_joint_trajectory_controller')
+    controller = FollowJointTrajectoryClient('asmbrobot_controller', '/asmbrobot/right_group_controller')
 
     # 向控制器发送轨迹目标GOAL，其中10是超时时间（单位为秒）。
     controller.send_goal(GOAL, 10)

@@ -31,7 +31,7 @@ PACKAGE_NAME = 'assembly_robot'
 def generate_launch_description():
     package_dir = get_package_share_directory(PACKAGE_NAME)
     robot_description_path = os.path.join(package_dir, 'urdf', 'asmb_robot.urdf')   #setup.py中路径设置
-    ros2_control_params = os.path.join(package_dir, 'resource', 'ros2_control_config_asmb_robot.yaml')
+    ros2_control_params = os.path.join(package_dir, 'resource', 'ros2_controllers.yaml')
 
     # Define your URDF robots here
     # The name of an URDF robot has to match the name of the robot of the driver node
@@ -66,7 +66,7 @@ def generate_launch_description():
         executable='spawner',
         output='screen',
         prefix=controller_manager_prefix,
-        arguments=['ur_joint_trajectory_controller', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
+        arguments=['right_group_controller', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
     )
 
     # 启动关节状态广播器，用于发布机器人的关节状态信息
@@ -75,7 +75,7 @@ def generate_launch_description():
         executable='spawner',
         output='screen',
         prefix=controller_manager_prefix,
-        arguments=['ur_joint_state_broadcaster', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
+        arguments=['joint_state_broadcaster', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
     )
 
     # 发布机器人的整体状态，包括TF变换
