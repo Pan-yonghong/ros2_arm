@@ -30,7 +30,7 @@ PACKAGE_NAME = 'assembly_robot'
 
 def generate_launch_description():
     package_dir = get_package_share_directory(PACKAGE_NAME)
-    robot_description_path = os.path.join(package_dir, 'resource', 'asmb_robot.urdf')
+    robot_description_path = os.path.join(package_dir, 'urdf', 'asmb_robot.urdf')   #setup.py中路径设置
     ros2_control_params = os.path.join(package_dir, 'resource', 'ros2_control_config_asmb_robot.yaml')
 
     # Define your URDF robots here
