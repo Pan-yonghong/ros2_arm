@@ -7,13 +7,12 @@ package_name = 'assembly_robot'
 data_files = []
 data_files.append(('share/ament_index/resource_index/packages', ['resource/' + package_name]))  
 data_files.append(('share/' + package_name + '/launch', [
-    'launch/robot_launch/asmb_robot_nodes_launch.py',
-    'launch/robot_launch/asmb_robot_world_launch.py',
-    # 'launch/robot_launch/asmb_robot_moveit_nodes_launch.py',
+    'launch/asmb_robot_nodes_launch.py',
+    'launch/asmb_robot_world_launch.py',
+    'launch/asmb_robot_moveit_nodes_launch.py',
 ]))
 data_files.append(('share/' + package_name + '/worlds', [
     'worlds/asmb_robot.wbt',
-    'worlds/.asmb_robot.wbproj',
 ]))
 data_files.append(('share/' + package_name, [
     'package.xml'
@@ -28,7 +27,7 @@ for (path, _, sub_folder) in os.walk('resource'):
 
 setup(
     name=package_name,
-    version='2023.1.2', #版本号
+    version='2024.7.2', #版本号
     packages=['assembly_robot'],
     data_files=data_files,
     install_requires=['setuptools', 'launch'],
@@ -37,20 +36,20 @@ setup(
     author_email='support@cyberbotics.com',
     maintainer='Cyberbotics',
     maintainer_email='support@cyberbotics.com',
-    keywords=['ROS', 'Webots', 'Robot', 'Simulation', 'Universal Robots'],
+    keywords=['ROS', 'Webots', 'Robot', 'Simulation', 'Assembly Robots'],
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
         'Topic :: Software Development',
     ],
-    description='Universal Robot ROS2 interface for Webots.',
+    description='Assembly Robot ROS2 interface for Webots.',
     license='Apache License, Version 2.0',
     tests_require=['pytest'],
     entry_points={
         'launch.frontend.launch_extension': ['launch_ros = launch_ros'],
         'console_scripts': [
-            'asmbrobot_controller = webots_ros2_universal_robot.asmbrobot_controller:main'
+            'asmbrobot_controller = assembly_robot.asmbrobot_controller:main'
         ]
     }
 )

@@ -24,7 +24,7 @@ from launch.substitutions import LaunchConfiguration
 from launch.substitutions.path_join_substitution import PathJoinSubstitution
 from webots_ros2_driver.webots_launcher import WebotsLauncher   # webots_ros2_driver包中的WebotsLauncher类，用于启动Webots
 
-PACKAGE_NAME = 'webots_ros2_universal_robot'
+PACKAGE_NAME = 'assembly_robot'
 
 
 def generate_launch_description():
@@ -43,7 +43,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'world',
             default_value='asmb_robot.wbt',
-            description='Choose one of the world files from `/webots_ros2_universal_robot/worlds` directory'
+            description='Choose one of the world files from `/assembly_robot/worlds` directory'
         ),
         webots,                 # 添加之前定义的 webots 实例到启动序列中
         webots._supervisor,
