@@ -1,13 +1,6 @@
-# Default initial positions for asmb_robot's ros2_control fake system
+# Default initial positions for ASMBRobot's ros2_control fake system
 
 initial_positions:
-  left_arm_joint1: 0
-  left_arm_joint2: 0
-  left_arm_joint3: 0
-  left_arm_joint4: 0
-  left_arm_joint5: 0
-  left_arm_joint6: 0
-  left_arm_joint7: 0
   right_arm_joint1: 0
   right_arm_joint2: 0
   right_arm_joint3: 0
@@ -15,3 +8,4 @@ initial_positions:
   right_arm_joint5: 0
   right_arm_joint6: 0
   right_arm_joint7: 0
+  right_finger_joint2: 0

@@ -1,845 +1,600 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
-     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
-     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot name="asmb_robot">
-    <webots>
-        <plugin type="webots_ros2_control::Ros2Control"/>
-    </webots>
-
-    <!-- Data files required by the UR driver -->
-    <ros2_control name="WebotsControl" type="system">
-        <hardware>
-        <plugin>webots_ros2_control::Ros2ControlSystem</plugin>
-        </hardware>
-    </ros2_control>
-
-    <link name="base_footprint"/>
-
-    <joint name="base_joint" type="fixed">
-        <parent link="base_footprint"/>
-        <child link="base_link"/>
-        <origin xyz="0.0 0.0 0.6" rpy='0 0 0'/>
-    </joint>
-
-    <link name="base_link">
-        <inertial>
-        <origin xyz="0.00033756 -0.1009 -0.19396" rpy="0 0 0" />
-        <mass value="6.0305" />
-        <inertia
-            ixx="0.046724"
-            ixy="-4.5041E-07"
-            ixz="9.91E-07"
-            iyy="0.067731"
-            iyz="1.1733E-05"
-            izz="0.063865" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/base_link.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/base_link.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <link name="left_arm_link1">
-        <inertial>
-        <origin
-            xyz="-0.0111719312011821 0.0427328534267481 2.4355875653137E-05"
-            rpy="0 0 0" />
-        <mass
-            value="0.37555886929927" />
-        <inertia
-            ixx="0.000330326017891572"
-            ixy="4.02540731446064E-05"
-            ixz="9.05997243548107E-08"
-            iyy="0.000350494198283333"
-            iyz="3.43414054726243E-08"
-            izz="0.00035980809203984" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link1.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link1.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="left_arm_joint1"
-        type="revolute">
-        <origin
-        xyz="-0.1469 -0.1 0.473"
-        rpy="0 0 1.5708" />
-        <parent
-        link="base_link" />
-        <child
-        link="left_arm_link1" />
-        <axis
-        xyz="0 1 0" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="left_arm_link2">
-        <inertial>
-        <origin
-            xyz="0.0435127489328919 1.14223705264815E-05 -0.103754624609668"
-            rpy="0 0 0" />
-        <mass
-            value="0.471882858713434" />
-        <inertia
-            ixx="0.00068468942336303"
-            ixy="-3.44237430445354E-08"
-            ixz="0.000110141059333616"
-            iyy="0.000765223053968466"
-            iyz="-2.66607580729733E-07"
-            izz="0.00042250117285836" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link2.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link2.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="left_arm_joint2"
-        type="revolute">
-        <origin
-        xyz="-0.057 0.0536 0"
-        rpy="0 0 0" />
-        <parent
-        link="left_arm_link1" />
-        <child
-        link="left_arm_link2" />
-        <axis
-        xyz="1 0 0" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="left_arm_link3">
-        <inertial>
-        <origin
-            xyz="2.23152680167565E-05 0.0255369447390962 -0.0422552886041748"
-            rpy="0 0 0" />
-        <mass
-            value="0.134068404066203" />
-        <inertia
-            ixx="0.000305770736688707"
-            ixy="-5.26601068819632E-13"
-            ixz="-9.76065410959744E-11"
-            iyy="0.00034023745896926"
-            iyz="5.09681758674869E-05"
-            izz="0.000115722238046747" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link3.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link3.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="left_arm_joint3"
-        type="revolute">
-        <origin
-        xyz="0.057 0 -0.15815"
-        rpy="0 0 0" />
-        <parent
-        link="left_arm_link2" />
-        <child
-        link="left_arm_link3" />
-        <axis
-        xyz="0 0 -1" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="left_arm_link4">
-        <inertial>
-        <origin
-            xyz="2.37968174031794E-05 -0.0391123742147303 -0.101879035893484"
-            rpy="0 0 0" />
-        <mass
-            value="0.481341653757711" />
-        <inertia
-            ixx="0.000797421090645401"
-            ixy="3.44237413580918E-08"
-            ixz="-2.63646690851135E-07"
-            iyy="0.000753259239873371"
-            iyz="-0.000111507215554053"
-            izz="0.000426003163020559" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link4.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link4.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="left_arm_joint4"
-        type="revolute">
-        <origin
-        xyz="0 0.052 -0.12135"
-        rpy="0 0 0" />
-        <parent
-        link="left_arm_link3" />
-        <child
-        link="left_arm_link4" />
-        <axis
-        xyz="0 -1 0" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="left_arm_link5">
-        <inertial>
-        <origin
-            xyz="-0.00832510191125416 7.31447708182675E-06 -0.0647333672491731"
-            rpy="0 0 0" />
-        <mass
-            value="0.36518735117001" />
-        <inertia
-            ixx="0.000323872947540741"
-            ixy="-9.0599724720789E-08"
-            ixz="-3.06026099110981E-05"
-            iyy="0.00034125199153883"
-            iyz="-3.03261364900974E-08"
-            izz="0.000291712635621284" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link5.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link5.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="left_arm_joint5"
-        type="revolute">
-        <origin
-        xyz="0 -0.052 -0.15815"
-        rpy="0 0 0" />
-        <parent
-        link="left_arm_link4" />
-        <child
-        link="left_arm_link5" />
-        <axis
-        xyz="0 0 -1" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="left_arm_link6">
-        <inertial>
-        <origin
-            xyz="0.0254484238194076 8.7207945752843E-06 -0.0424423841312473"
-            rpy="0 0 0" />
-        <mass
-            value="0.0794420469377912" />
-        <inertia
-            ixx="4.99626248401598E-05"
-            ixy="-9.96241233946103E-09"
-            ixz="1.77191875127423E-05"
-            iyy="6.3552300504397E-05"
-            iyz="1.90103058951267E-09"
-            izz="4.60198391772348E-05" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link6.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link6.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="left_arm_joint6"
-        type="revolute">
-        <origin
-        xyz="-0.04715 0 -0.07985"
-        rpy="0 0 0" />
-        <parent
-        link="left_arm_link5" />
-        <child
-        link="left_arm_link6" />
-        <axis
-        xyz="-1 0 0" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="left_arm_link7">
-        <inertial>
-        <origin
-            xyz="-0.00684591368773449 -0.00225966487041221 -0.0757888860974246"
-            rpy="0 0 0" />
-        <mass
-            value="0.246381268980238" />
-        <inertia
-            ixx="9.74981646570946E-05"
-            ixy="1.48560941846273E-07"
-            ixz="-1.55997251411429E-06"
-            iyy="7.01118905134604E-05"
-            iyz="-1.66728272662123E-08"
-            izz="6.42805103728722E-05" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link7.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link7.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="left_arm_joint7"
-        type="revolute">
-        <origin
-        xyz="0.04715 0 -0.067"
-        rpy="0 0 0" />
-        <parent
-        link="left_arm_link6" />
-        <child
-        link="left_arm_link7" />
-        <axis
-        xyz="0 0 -1" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="right_arm_link1">
-        <inertial>
-        <origin
-            xyz="-0.0111614849352257 -0.0428043633393793 2.10841879104695E-05"
-            rpy="0 0 0" />
-        <mass
-            value="0.375354991700786" />
-        <inertia
-            ixx="0.000330315430803661"
-            ixy="-3.97269748405946E-05"
-            ixz="9.05997217182602E-08"
-            iyy="0.000350498571452007"
-            iyz="3.20249609898234E-08"
-            izz="0.000359792713594112" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link1.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link1.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="right_arm_joint1"
-        type="revolute">
-        <origin
-        xyz="0.1469 -0.1 0.473"
-        rpy="0 0 1.5708" />
-        <parent
-        link="base_link" />
-        <child
-        link="right_arm_link1" />
-        <axis
-        xyz="0 -1 0" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="right_arm_link2">
-        <inertial>
-        <origin
-            xyz="0.0436211569729559 4.29811547923709E-05 -0.104125890605173"
-            rpy="0 0 0" />
-        <mass
-            value="0.470914062127475" />
-        <inertia
-            ixx="0.000684744530374561"
-            ixy="-3.4423743629235E-08"
-            ixz="0.000110141059333714"
-            iyy="0.000765215081302057"
-            iyz="-2.67540579347918E-07"
-            izz="0.000422437197787534" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link2.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link2.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="right_arm_joint2"
-        type="revolute">
-        <origin
-        xyz="-0.057 -0.0536 0"
-        rpy="0 0 0" />
-        <parent
-        link="right_arm_link1" />
-        <child
-        link="right_arm_link2" />
-        <axis
-        xyz="1 0 0" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="right_arm_link3">
-        <inertial>
-        <origin
-            xyz="2.23150819426976E-05 -0.0255369447390854 -0.0422552886058221"
-            rpy="0 0 0" />
-        <mass
-            value="0.134068404066203" />
-        <inertia
-            ixx="0.000305768161452972"
-            ixy="-5.23856973352433E-13"
-            ixz="4.57957977786667E-09"
-            iyy="0.000340237458969287"
-            iyz="-5.09681758668034E-05"
-            izz="0.000115724813282458" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link3.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link3.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="right_arm_joint3"
-        type="revolute">
-        <origin
-        xyz="0.057 0 -0.15815"
-        rpy="0 0 0" />
-        <parent
-        link="right_arm_link2" />
-        <child
-        link="right_arm_link3" />
-        <axis
-        xyz="0 0 -1" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="right_arm_link4">
-        <inertial>
-        <origin
-            xyz="-5.04057109226852E-06 0.0390764537237857 -0.101759917765461"
-            rpy="0 0 0" />
-        <mass
-            value="0.480553306375498" />
-        <inertia
-            ixx="0.000797347043782015"
-            ixy="3.44237427553549E-08"
-            ixz="2.66192892767091E-07"
-            iyy="0.000753143126764587"
-            iyz="0.00011150721555429"
-            izz="0.000426045308109396" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link4.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link4.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="right_arm_joint4"
-        type="revolute">
-        <origin
-        xyz="0 -0.052 -0.12135"
-        rpy="0 0 0" />
-        <parent
-        link="right_arm_link3" />
-        <child
-        link="right_arm_link4" />
-        <axis
-        xyz="0 1 0" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="right_arm_link5">
-        <inertial>
-        <origin
-            xyz="-0.00807535428200458 2.56670172060769E-08 -0.0557176335238633"
-            rpy="0 0 0" />
-        <mass
-            value="0.271897101050664" />
-        <inertia
-            ixx="0.000264502626709622"
-            ixy="-2.7835582841576E-10"
-            ixz="-3.95786143188381E-05"
-            iyy="0.00029897640303694"
-            iyz="3.89752951266778E-07"
-            izz="0.000208248812727084" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link5.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link5.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="right_arm_joint5"
-        type="revolute">
-        <origin
-        xyz="0 0.052 -0.162"
-        rpy="0 0 0" />
-        <parent
-        link="right_arm_link4" />
-        <child
-        link="right_arm_link5" />
-        <axis
-        xyz="0 0 -1" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="right_arm_link6">
-        <inertial>
-        <origin
-            xyz="0.0207665378714823 -8.74230662840925E-05 -0.0389940241636525"
-            rpy="0 0 0" />
-        <mass
-            value="0.0864651823892207" />
-        <inertia
-            ixx="5.89002390212819E-05"
-            ixy="-1.04321646173123E-08"
-            ixz="2.04059095589276E-05"
-            iyy="7.28029989676431E-05"
-            iyz="8.94605628178264E-09"
-            izz="4.77904219556312E-05" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link6.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link6.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="right_arm_joint6"
-        type="revolute">
-        <origin
-        xyz="-0.044 0 -0.076"
-        rpy="0 0 0" />
-        <parent
-        link="right_arm_link5" />
-        <child
-        link="right_arm_link6" />
-        <axis
-        xyz="-1 0 0" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
-    <link name="right_arm_link7">
-        <inertial>
-        <origin
-            xyz="-0.00747466063988353 0.00239160195661511 -0.0812730398071753"
-            rpy="0 0 0" />
-        <mass
-            value="0.226179539449807" />
-        <inertia
-            ixx="9.27098029478323E-05"
-            ixy="1.48560506530462E-07"
-            ixz="-1.56010709202246E-06"
-            iyy="6.73256048302617E-05"
-            iyz="-2.86656614667542E-08"
-            izz="5.70494927622878E-05" />
-        </inertial>
-        <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link7.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="1 1 1 1" />
-        </material>
-        </visual>
-        <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_link7.STL" />
-        </geometry>
-        </collision>
-    </link>
-    <joint name="right_arm_joint7"
-        type="revolute">
-        <origin
-        xyz="0.044 0 -0.067"
-        rpy="0 0 0" />
-        <parent
-        link="right_arm_link6" />
-        <child
-        link="right_arm_link7" />
-        <axis
-        xyz="0 0 -1" />
-        <limit
-        lower="-3.14"
-        upper="3.14"
-        effort="100"
-        velocity="1" />
-    </joint>
+<!--
+This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+For more information, please see http://wiki.ros.org/sw_urdf_exporter
+-->
+<robot name="ASMBRobot">
+	<webots>
+		<plugin type="webots_ros2_control::Ros2Control" />
+	</webots>
+	<!-- Data files required by the UR driver -->
+	<ros2_control name="WebotsControl" type="system">
+		<hardware>
+			<plugin>
+				webots_ros2_control::Ros2ControlSystem
+			</plugin>
+		</hardware>
+	</ros2_control>
+	<!--
+	<link name="base_footprint" />
+	<joint name="base_joint" type="fixed">
+	<parent link="base_footprint" />
+	<child link="base_link" />
+	<origin xyz="0.0 0.0 0.6" rpy="0 0 0" />
+	</joint>
+	-->
+	<link name="base_link">
+		<inertial>
+			<origin xyz="-0.00023803 0.00019229 0.02" rpy="0 0 0" />
+			<mass value="5.9383" />
+			<inertia ixx="0.067685" ixy="2.6874E-08" ixz="-1.1686E-05" iyy="0.046713" iyz="1.2055E-06" izz="0.063819" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/base_link.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/base_link.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<link name="head_camera_Link">
+		<inertial>
+			<origin xyz="0.013458 -0.061285 -0.0031032" rpy="0 0 0" />
+			<mass value="0.061182" />
+			<inertia ixx="3.911E-05" ixy="4.0531E-07" ixz="4.5885E-08" iyy="4.5618E-06" iyz="-9.4269E-08" izz="3.9266E-05" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/head_camera_Link.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/head_camera_Link.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="head_camera_joint" type="revolute">
+		<origin xyz="0.0875 0.065 1.6145" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="head_camera_Link" />
+		<axis xyz="0 1 0" />
+		<limit lower="-1.57" upper="1.57" effort="100" velocity="1" />
+	</joint>
+	<link name="right_arm_Link1">
+		<inertial>
+			<origin xyz="0.011228 -0.043139 9.719E-07" rpy="0 0 0" />
+			<mass value="0.37147" />
+			<inertia ixx="0.00033016" ixy="4.0254E-05" ixz="-9.06E-08" iyy="0.0003504" iyz="-3.4341E-08" izz="0.00035955" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link1.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link1.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="right_arm_joint1" type="revolute">
+		<origin xyz="0 -0.1469 1.319" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="right_arm_Link1" />
+		<axis xyz="0 -1 0" />
+		<limit lower="-3.14" upper="3.14" effort="100" velocity="1" />
+	</joint>
+	<link name="right_arm_Link2">
+		<inertial>
+			<origin xyz="-0.043622 -1.7909E-05 -0.10408" rpy="0 0 0" />
+			<mass value="0.47028" />
+			<inertia ixx="0.00068469" ixy="-3.4424E-08" ixz="-0.00011014" iyy="0.00076516" iyz="2.6661E-07" izz="0.00042244" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link2.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link2.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="right_arm_joint2" type="revolute">
+		<origin xyz="0.057 -0.0536 0" rpy="0 0 0" />
+		<parent link="right_arm_Link1" />
+		<child link="right_arm_Link2" />
+		<axis xyz="-1 0 0" />
+		<limit lower="0" upper="3.14" effort="100" velocity="1" />
+	</joint>
+	<link name="right_arm_Link3">
+		<inertial>
+			<origin xyz="-9.1848E-11 -0.025876 -0.041251" rpy="0 0 0" />
+			<mass value="0.12999" />
+			<inertia ixx="0.00030536" ixy="-5.266E-13" ixz="9.7607E-11" iyy="0.00034017" iyz="-5.0968E-05" izz="0.00011537" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link3.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link3.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="right_arm_joint3" type="revolute">
+		<origin xyz="-0.057 0 -0.15815" rpy="0 0 0" />
+		<parent link="right_arm_Link2" />
+		<child link="right_arm_Link3" />
+		<axis xyz="0 0 -1" />
+		<limit lower="-3.14" upper="3.14" effort="100" velocity="1" />
+	</joint>
+	<link name="right_arm_Link4">
+		<inertial>
+			<origin xyz="-1.7652E-05 0.039272 -0.10244" rpy="0 0 0" />
+			<mass value="0.47713" />
+			<inertia ixx="0.00079717" ixy="3.4424E-08" ixz="2.6365E-07" iyy="0.00075314" iyz="0.00011151" izz="0.00042587" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link4.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link4.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="right_arm_joint4" type="revolute">
+		<origin xyz="0 -0.052 -0.12135" rpy="0 0 0" />
+		<parent link="right_arm_Link3" />
+		<child link="right_arm_Link4" />
+		<axis xyz="0 1 0" />
+		<limit lower="-1.57" upper="1.57" effort="100" velocity="1" />
+	</joint>
+	<link name="right_arm_Link5">
+		<inertial>
+			<origin xyz="0.00832510191125416 -7.31447708185451E-06 -0.0647333672491731" rpy="0 0 0" />
+			<mass value="0.36518735117001" />
+			<inertia ixx="0.000323872947540741" ixy="-9.05997247207879E-08" ixz="3.06026099110981E-05" iyy="0.00034125199153883" iyz="3.03261364900966E-08" izz="0.000291712635621284" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link5.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link5.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="right_arm_joint5" type="revolute">
+		<origin xyz="0 0.052 -0.15815" rpy="0 0 0" />
+		<parent link="right_arm_Link4" />
+		<child link="right_arm_Link5" />
+		<axis xyz="0 0 -1" />
+		<limit lower="-3.14" upper="3.14" effort="100" velocity="1" />
+	</joint>
+	<link name="right_arm_Link6">
+		<inertial>
+			<origin xyz="-0.0284421308334516 -8.96964113533683E-06 -0.043090657269692" rpy="0 0 0" />
+			<mass value="0.0772380702383185" />
+			<inertia ixx="4.9946590615964E-05" ixy="-9.96241233945074E-09" ixz="-1.77191875127423E-05" iyy="6.34897666656896E-05" iyz="-1.90103058951182E-09" izz="4.59682165131106E-05" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link6.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link6.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="right_arm_joint6" type="revolute">
+		<origin xyz="0.05 0 -0.07985" rpy="0 0 0" />
+		<parent link="right_arm_Link5" />
+		<child link="right_arm_Link6" />
+		<axis xyz="1 0 0" />
+		<limit lower="-1.57" upper="1.57" effort="100" velocity="1" />
+	</joint>
+	<link name="right_arm_Link7">
+		<inertial>
+			<origin xyz="0.00714396022442265 0.00235971596269616 -0.073770341517848" rpy="0 0 0" />
+			<mass value="0.235933563807994" />
+			<inertia ixx="9.62557687249357E-05" ixy="1.48559640171866E-07" ixz="1.56010275519695E-06" iyy="6.87705932277823E-05" iyz="1.66743745289563E-08" izz="6.39512853060415E-05" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link7.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_arm_Link7.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="right_arm_joint7" type="revolute">
+		<origin xyz="-0.05 0 -0.067" rpy="0 0 0" />
+		<parent link="right_arm_Link6" />
+		<child link="right_arm_Link7" />
+		<axis xyz="0 0 -1" />
+		<limit lower="-3.14" upper="3.14" effort="100" velocity="1" />
+	</joint>
+	<link name="right_finger_link1">
+		<inertial>
+			<origin xyz="0.00378952208500735 0.18602302823187 0.213635882113623" rpy="0 0 0" />
+			<mass value="10.2661535963727" />
+			<inertia ixx="3.02922806964106" ixy="-6.90053325021604E-05" ixz="-0.0136693947650833" iyy="2.82305694426368" iyz="-0.00110155202987456" izz="0.262090473602717" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_finger_link1.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_finger_link1.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="right_finger_joint1" type="prismatic">
+		<origin xyz="0 0.013 -0.1435" rpy="0 0 0" />
+		<parent link="right_arm_Link7" />
+		<child link="right_finger_link1" />
+		<axis xyz="0 1 0" />
+		<limit lower="-0.013" upper="0" effort="100" velocity="1" />
+	</joint>
+	<link name="right_finger_link2">
+		<inertial>
+			<origin xyz="0.00378952208500025 0.21202302823187 0.213635882113621" rpy="0 0 0" />
+			<mass value="10.2661535963727" />
+			<inertia ixx="3.02922806964106" ixy="-6.90053325021583E-05" ixz="-0.0136693947650833" iyy="2.82305694426368" iyz="-0.00110155202987454" izz="0.262090473602717" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_finger_link2.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/right_finger_link2.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="right_finger_joint2" type="prismatic">
+		<origin xyz="0 -0.013 -0.1435" rpy="0 0 0" />
+		<parent link="right_arm_Link7" />
+		<child link="right_finger_link2" />
+		<axis xyz="0 1 0" />
+		<limit lower="0" upper="0.013" effort="100" velocity="1" />
+	</joint>
+	<link name="left_arm_Link1">
+		<inertial>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<mass value="0" />
+			<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_Link1.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_Link1.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="left_arm_joint1" type="revolute">
+		<origin xyz="0 0.1469 1.319" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="left_arm_Link1" />
+		<axis xyz="0 1 0" />
+		<limit lower="-3.14" upper="3.14" effort="100" velocity="1" />
+	</joint>
+	<link name="left_arm_Link2">
+		<inertial>
+			<origin xyz="-0.0436219172708804 -1.79087728571503E-05 -0.104081408006254" rpy="0 0 0" />
+			<mass value="0.470284076871094" />
+			<inertia ixx="0.000684685263285664" ixy="-3.44237436292327E-08" ixz="-0.000110141059333714" iyy="0.00076515581421316" iyz="2.6754057934791E-07" izz="0.000422436110263861" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_Link2.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_Link2.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="left_arm_joint2" type="revolute">
+		<origin xyz="0.057 0.0536 0" rpy="0 0 0" />
+		<parent link="left_arm_Link1" />
+		<child link="left_arm_Link2" />
+		<axis xyz="-1 0 0" />
+		<limit lower="-3.14" upper="0" effort="100" velocity="1" />
+	</joint>
+	<link name="left_arm_Link3">
+		<inertial>
+			<origin xyz="1.00064317942739E-10 0.025875590268055 -0.0412507797749025" rpy="0 0 0" />
+			<mass value="0.129990371419528" />
+			<inertia ixx="0.00030535462683607" ixy="-5.23857015698888E-13" ixz="-4.57957977787833E-09" iyy="0.000340167432870768" iyz="5.09681758668033E-05" izz="0.000115373694611261" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_Link3.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_Link3.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="left_arm_joint3" type="revolute">
+		<origin xyz="-0.057 0 -0.15815" rpy="0 0 0" />
+		<parent link="left_arm_Link2" />
+		<child link="left_arm_Link3" />
+		<axis xyz="0 0 -1" />
+		<limit lower="-3.14" upper="3.14" effort="100" velocity="1" />
+	</joint>
+	<link name="left_arm_Link4">
+		<inertial>
+			<origin xyz="1.12949191619499E-05 -0.0392744601445019 -0.10245015779141" rpy="0 0 0" />
+			<mass value="0.477207553120282" />
+			<inertia ixx="0.000797172405509101" ixy="3.44237427553357E-08" ixz="-2.66192892767085E-07" iyy="0.000753136152735815" iyz="-0.00011150721555429" izz="0.000425870669836482" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_Link4.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_Link4.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="left_arm_joint4" type="revolute">
+		<origin xyz="0 0.052 -0.12135" rpy="0 0 0" />
+		<parent link="left_arm_Link3" />
+		<child link="left_arm_Link4" />
+		<axis xyz="0 -1 0" />
+		<limit lower="-1.57" upper="1.57" effort="100" velocity="1" />
+	</joint>
+	<link name="left_arm_Link5">
+		<inertial>
+			<origin xyz="0.0246929115734381 2.54604670679726E-12 -0.0280331375827695" rpy="0 0 0" />
+			<mass value="0.114969387635768" />
+			<inertia ixx="0.000214486666563017" ixy="8.18193675974143E-16" ixz="3.95787812577454E-05" iyy="0.000191507007785459" iyz="-8.02454238603924E-10" izz="0.000100328294143232" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_Link5.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_Link5.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="left_arm_joint5" type="revolute">
+		<origin xyz="0 -0.052 -0.162" rpy="0 0 0" />
+		<parent link="left_arm_Link4" />
+		<child link="left_arm_Link5" />
+		<axis xyz="0 0 -1" />
+		<limit lower="-3.14" upper="3.14" effort="100" velocity="1" />
+	</joint>
+	<link name="left_arm_Link6">
+		<inertial>
+			<origin xyz="-0.0205835191216947 3.86713536193461E-09 -0.0390232072359369" rpy="0 0 0" />
+			<mass value="0.0852865509434714" />
+			<inertia ixx="5.88864912715646E-05" ixy="-1.04321646173082E-08" ixz="-2.04059095589276E-05" iyy="7.27736472314995E-05" iyz="-8.94605628178208E-09" izz="4.77719813940709E-05" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_Link6.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_Link6.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="left_arm_joint6" type="revolute">
+		<origin xyz="0.044 0 -0.076" rpy="0 0 0" />
+		<parent link="left_arm_Link5" />
+		<child link="left_arm_Link6" />
+		<axis xyz="1 0 0" />
+		<limit lower="-1.57" upper="1.57" effort="100" velocity="1" />
+	</joint>
+	<link name="left_arm_link7">
+		<inertial>
+			<origin xyz="0.00714707073326404 -0.00229274231656032 -0.0737703415178471" rpy="0 0 0" />
+			<mass value="0.235933563807994" />
+			<inertia ixx="9.62557687250713E-05" ixy="1.48559640115472E-07" ixz="1.56023706110913E-06" iyy="6.87705932281028E-05" iyz="2.86685188302253E-08" izz="6.39512853061686E-05" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link7.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_arm_link7.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="left_arm_joint7" type="revolute">
+		<origin xyz="-0.044 0 -0.067" rpy="0 0 0" />
+		<parent link="left_arm_Link6" />
+		<child link="left_arm_link7" />
+		<axis xyz="0 0 -1" />
+		<limit lower="-3.14" upper="3.14" effort="100" velocity="1" />
+	</joint>
+	<link name="left_finger_link1">
+		<inertial>
+			<origin xyz="6.80011602582908E-16 -0.00411763664848558 0.00481108166244198" rpy="0 0 0" />
+			<mass value="0.0040452362516926" />
+			<inertia ixx="6.10992226146284E-07" ixy="-1.55626075658646E-20" ixz="3.51285395851822E-21" iyy="6.5986866626256E-07" iyz="8.70645993041956E-08" izz="1.6021830179866E-07" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_finger_link1.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_finger_link1.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="left_finger_joint1" type="prismatic">
+		<origin xyz="0 -0.013 -0.1435" rpy="0 0 0" />
+		<parent link="left_arm_link7" />
+		<child link="left_finger_link1" />
+		<axis xyz="0 -1 0" />
+		<limit lower="-0.013" upper="0" effort="100" velocity="1" />
+	</joint>
+	<link name="left_finger_link2">
+		<inertial>
+			<origin xyz="-1.19348975147204E-15 0.00411763664848627 0.00481108166244132" rpy="0 0 0" />
+			<mass value="0.0040452362516926" />
+			<inertia ixx="6.10992226146284E-07" ixy="-6.71589876456661E-21" ixz="4.25082523803841E-20" iyy="6.59868666262535E-07" iyz="-8.70645993042676E-08" izz="1.60218301798685E-07" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_finger_link2.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://assembly_robot/resource/asmb_robot/meshes/left_finger_link2.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<joint name="left_finger_joint2" type="prismatic">
+		<origin xyz="0 0.013 -0.1435" rpy="0 0 0" />
+		<parent link="left_arm_link7" />
+		<child link="left_finger_link2" />
+		<axis xyz="0 -1 0" />
+		<limit lower="0" upper="0.013" effort="100" velocity="1" />
+	</joint>
 </robot>

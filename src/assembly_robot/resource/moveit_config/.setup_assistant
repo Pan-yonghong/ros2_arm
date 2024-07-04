@@ -3,11 +3,11 @@ moveit_setup_assistant_config:
     package: assembly_robot
     relative_path: urdf/asmb_robot.urdf
   srdf:
-    relative_path: config/asmb_robot.srdf
+    relative_path: config/ASMBRobot.srdf
   package_settings:
     author_name: 1
     author_email: 1
-    generated_timestamp: 1719989124
+    generated_timestamp: 1720087426
   control_xacro:
     command:
       - position

@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Launch Webots Universal Robot simulation nodes."""
+"""Launch Webots Assembly Robot simulation nodes."""
 
 import os
 import launch

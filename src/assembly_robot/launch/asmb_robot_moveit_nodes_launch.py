@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Launch Webots Universal Robot simulation nodes with MoveIt2."""
+"""Launch Webots Assembly Robot simulation nodes with MoveIt2."""
 
 import os
 import pathlib
@@ -50,7 +50,7 @@ def generate_launch_description():
 
         # Configuration
         description = {'robot_description': load_file('asmb_robot.urdf')}
-        description_semantic = {'robot_description_semantic': load_file('asmb_robot.srdf')}
+        description_semantic = {'robot_description_semantic': load_file('ASMBRobot.srdf')}
         description_kinematics = {'robot_description_kinematics': load_yaml('kinematics.yaml')}
         sim_time = {'use_sim_time': True}   # Ros2Supervisor 节点负责获取 Webots 仿真时间并将其发布到 /clock 主题
 
@@ -74,7 +74,8 @@ def generate_launch_description():
 
         # MoveIt2 node
         # 这里定义了一个字典，其中键为 'move_group'，值则是通过加载名为 moveit_movegroup.yaml 的YAML配置文件得到的内容。
-        # 这个YAML文件通常包含了对move_group节点的各种配置信息，比如规划管道、机器人模型详情、规划组、运动学求解器等，这些都是进行运动规划所必需的参数。
+        # 这个YAML文件通常包含了对move_group节点的各种配置信息，比如规划管道、机器人模型详情、规划组、运动学求解器等，
+        # 这些都是进行运动规划所必需的参数。
         movegroup = {'move_group': load_yaml('moveit_movegroup.yaml')}
         moveit_controllers = {
             'moveit_controller_manager': 'moveit_simple_controller_manager/MoveItSimpleControllerManager',
