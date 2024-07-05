@@ -28,8 +28,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.20956653419585433 -0.18820698205641756 -0.9595102915812592 4.474637947308274
-  position 5.162916993662311 -15.11586294783656 8.815914604085723
+  orientation 0.22390871642363427 -0.19400308962048382 -0.9551061134383064 4.440183679126743
+  position 4.1126783777589795 -12.596393132902515 7.114709534713935
   exposure 1.7
 }
 TexturedBackground {
@@ -37,16 +37,17 @@ TexturedBackground {
 }
 Floor {
   size 20 20
+  tileSize 0.01 0.01
   appearance ThreadMetalPlate {
   }
 }
 Can {
-  translation -0.2 -0.39 1.26
+  translation -0.2 -0.39 0.86
 }
 Table {
   translation -0.0388 -0.688 0
   rotation 0 0 1 1.5708
-  size 1 1.8 1.2
+  size 1 1.8 0.8
   trayAppearance VarnishedPine {
     colorOverride 0.929412 0.929412 0.929412
     textureTransform TextureTransform {
@@ -62,5 +63,5 @@ Table {
   }
 }
 Apple {
-  translation 0.2 -0.37 1.26
+  translation 0.2 -0.37 0.86
 }

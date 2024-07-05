@@ -1,9 +1,10 @@
 controller_names:
   - asmbrobot/right_group_controller
+  - asmbrobot/left_group_controller
 
 asmbrobot/right_group_controller:
-  action_ns: follow_joint_trajectory
   type: FollowJointTrajectory
+  action_ns: follow_joint_trajectory
   default: true
   joints:
     - right_arm_joint1
@@ -13,3 +14,17 @@ asmbrobot/right_group_controller:
     - right_arm_joint5
     - right_arm_joint6
     - right_arm_joint7
+    - right_finger_joint2
+asmbrobot/left_group_controller:
+  type: FollowJointTrajectory
+  action_ns: follow_joint_trajectory
+  default: true
+  joints:
+    - left_arm_joint1
+    - left_arm_joint2
+    - left_arm_joint3
+    - left_arm_joint4
+    - left_arm_joint5
+    - left_arm_joint6
+    - left_arm_joint7
+    - left_finger_joint2

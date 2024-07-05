@@ -24,20 +24,22 @@ from assembly_robot.asmb_robot_follow_joint_trajectory_client import FollowJoint
 #'points' 是一系列轨迹点，每个点定义了各个关节在特定时间点的位置和到达该点所需的时间。
 GOAL = {
     'joint_names': [
-        # 'left_arm_joint1',
-        # 'left_arm_joint2',
-        # 'left_arm_joint3',
-        # 'left_arm_joint4',
-        # 'left_arm_joint5',
-        # 'left_arm_joint6',
-        # 'left_arm_joint7',
         'right_arm_joint1',
         'right_arm_joint2',
         'right_arm_joint3',
         'right_arm_joint4',
         'right_arm_joint5',
         'right_arm_joint6',
-        'right_arm_joint7'
+        'right_arm_joint7',
+        'right_figner_joint2',
+        'left_arm_joint1',
+        'left_arm_joint2',
+        'left_arm_joint3',
+        'left_arm_joint4',
+        'left_arm_joint5',
+        'left_arm_joint6',
+        'left_arm_joint7',
+        'left_figner_joint2',
     ],
     'points': [
         {

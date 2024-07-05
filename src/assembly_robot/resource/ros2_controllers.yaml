@@ -1,8 +1,12 @@
+# This config file is used by ros2_control
 asmbrobot/controller_manager:
   ros__parameters:
     update_rate: 50  # Hz
 
     right_group_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    left_group_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
     asm_joint_state_broadcaster:
@@ -18,9 +22,28 @@ asmbrobot/right_group_controller:
       - right_arm_joint5
       - right_arm_joint6
       - right_arm_joint7
+      - right_finger_joint2
     command_interfaces:
       - position
     state_interfaces:
       - position
-      
+      - velocity
+    allow_partial_joints_goal: true
+
+asmbrobot/left_group_controller:
+  ros__parameters:
+    joints:
+      - left_arm_joint1
+      - left_arm_joint2
+      - left_arm_joint3
+      - left_arm_joint4
+      - left_arm_joint5
+      - left_arm_joint6
+      - left_arm_joint7
+      - left_finger_joint2
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
     allow_partial_joints_goal: true
