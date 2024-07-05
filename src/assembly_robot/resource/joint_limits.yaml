@@ -43,11 +43,6 @@ joint_limits:
     max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
-  left_finger_joint2:
-    has_velocity_limits: true
-    max_velocity: 1
-    has_acceleration_limits: false
-    max_acceleration: 0
   right_arm_joint1:
     has_velocity_limits: true
     max_velocity: 1
@@ -79,11 +74,6 @@ joint_limits:
     has_acceleration_limits: false
     max_acceleration: 0
   right_arm_joint7:
-    has_velocity_limits: true
-    max_velocity: 1
-    has_acceleration_limits: false
-    max_acceleration: 0
-  right_finger_joint2:
     has_velocity_limits: true
     max_velocity: 1
     has_acceleration_limits: false

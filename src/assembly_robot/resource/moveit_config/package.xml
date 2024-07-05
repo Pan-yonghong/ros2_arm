@@ -4,9 +4,9 @@
   <name>moveit_config</name>
   <version>0.3.0</version>
   <description>
-     An automatically generated package with all the configuration and launch files for using the ASMBRobot with the MoveIt Motion Planning Framework
+     An automatically generated package with all the configuration and launch files for using the asmb_robot with the MoveIt Motion Planning Framework
   </description>
-  <maintainer email="pyh">pyh</maintainer>
+  <maintainer email="1">1</maintainer>
 
   <license>BSD</license>
 
@@ -14,7 +14,7 @@
   <url type="bugtracker">https://github.com/ros-planning/moveit2/issues</url>
   <url type="repository">https://github.com/ros-planning/moveit2</url>
 
-  <author email="pyh">pyh</author>
+  <author email="1">1</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

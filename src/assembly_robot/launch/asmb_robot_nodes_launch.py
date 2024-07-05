@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Launch Webots Assembly Robot simulation nodes."""
+"""Launch Webots Universal Robot simulation nodes."""
 
 import os
 import launch
@@ -30,14 +30,14 @@ PACKAGE_NAME = 'assembly_robot'
 
 def generate_launch_description():
     package_dir = get_package_share_directory(PACKAGE_NAME)
-    robot_description_path = os.path.join(package_dir, 'urdf', 'asmb_robot.urdf')   
+    robot_description_path = os.path.join(package_dir, 'resource', 'asmb_robot.urdf')   #setup.py中路径设置
     ros2_control_params = os.path.join(package_dir, 'resource', 'ros2_controllers.yaml')
 
     # Define your URDF robots here
     # The name of an URDF robot has to match the name of the robot of the driver node
     # You can specify the URDF file to use with "urdf_path"
     spawn_URDF_asmbrobot = URDFSpawner(
-        name='ASMBRobot', #此处修改模型名
+        name='asmb_robot', #此处修改模型名
         urdf_path=robot_description_path,
         translation='0 0 0.6',
         rotation='0 0 1 -1.5708',
@@ -46,7 +46,7 @@ def generate_launch_description():
     # Driver nodes
     # When having multiple robot it is mandatory to specify the robot name.
     universal_robot_driver = WebotsController(
-        robot_name='ASMBRobot',
+        robot_name='asmb_robot',
         namespace='asmbrobot',
         parameters=[
             {'robot_description': robot_description_path},
@@ -66,7 +66,7 @@ def generate_launch_description():
         executable='spawner',
         output='screen',
         prefix=controller_manager_prefix,
-        arguments=['right_arm_group_controller', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
+        arguments=['right_group_controller', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
     )
 
     # 启动关节状态广播器，用于发布机器人的关节状态信息
@@ -75,7 +75,7 @@ def generate_launch_description():
         executable='spawner',
         output='screen',
         prefix=controller_manager_prefix,
-        arguments=['joint_state_broadcaster', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
+        arguments=['asm_joint_state_broadcaster', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
     )
 
     # 发布机器人的整体状态，包括TF变换

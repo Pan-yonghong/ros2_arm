@@ -13,7 +13,7 @@ data_files.append(('share/' + package_name + '/launch', [
 ]))
 data_files.append(('share/' + package_name + '/worlds', ['worlds/asmb_robot.wbt',]))
 data_files.append(('share/' + package_name,             ['package.xml']))
-data_files.append(('share/' + package_name + '/urdf',   ['urdf/asmb_robot.urdf']))    #路径
+# data_files.append(('share/' + package_name + '/urdf',   ['urdf/asmb_robot.urdf']))    #路径
 
 # 遍历resource目录下的所有子目录和文件（排除名为package_name的特殊文件或目录），
 # 并将这些资源文件复制到安装路径的相应位置，确保所有资源文件都被正确安装
@@ -46,7 +46,7 @@ setup(
     entry_points={
         'launch.frontend.launch_extension': ['launch_ros = launch_ros'],
         'console_scripts': [
-            'asmbrobot_controller = assembly_robot.asmbrobot_controller:main'
+            'asmbrobot_controller = assembly_robot.asmb_robot_controller:main'
         ]
     }
 )
