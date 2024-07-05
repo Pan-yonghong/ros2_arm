@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Launch Webots Universal Robot simulation nodes with MoveIt2."""
+"""Launch Webots Assembly Robot simulation nodes with MoveIt2."""
 
 import os
 import pathlib

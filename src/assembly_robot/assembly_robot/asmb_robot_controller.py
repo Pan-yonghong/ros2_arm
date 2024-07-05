@@ -12,11 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Trajectory follower client for the UR5 robot used for multi-robot demonstration."""
+"""Trajectory follower client for the Assembly robot used for multi-robot demonstration."""
 
 import rclpy
 
-# 从指定模块导入 FollowJointTrajectoryClient 类，用于发送关节轨迹目标给机器人控制器。
 from assembly_robot.asmb_robot_follow_joint_trajectory_client import FollowJointTrajectoryClient
 
 #定义了一个字典GOAL，里面包含了机器人的关节轨迹信息。具体来说：
@@ -115,9 +114,8 @@ def main(args=None):
 
     # 创建一个FollowJointTrajectoryClient实例，指定控制器名称和ROS服务主题路径，用于与机器人控制器通信
     controller = FollowJointTrajectoryClient('asmbrobot_controller', '/asmbrobot/right_group_controller')
-
-    # 向控制器发送轨迹目标GOAL，其中10是超时时间（单位为秒）。
     controller.send_goal(GOAL, 10)
+    
     rclpy.spin(controller)
 
 

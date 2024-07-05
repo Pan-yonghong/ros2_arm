@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Launch Webots Universal Robot simulation nodes."""
+"""Launch Webots Assembly Robot simulation nodes."""
 
 import os
 import launch
@@ -30,16 +30,16 @@ PACKAGE_NAME = 'assembly_robot'
 
 def generate_launch_description():
     package_dir = get_package_share_directory(PACKAGE_NAME)
-    robot_description_path = os.path.join(package_dir, 'resource', 'asmb_robot.urdf')   #setup.py中路径设置
+    robot_description_path = os.path.join(package_dir, 'resource', 'asmb_robot.urdf')   
     ros2_control_params = os.path.join(package_dir, 'resource', 'ros2_controllers.yaml')
 
     # Define your URDF robots here
     # The name of an URDF robot has to match the name of the robot of the driver node
     # You can specify the URDF file to use with "urdf_path"
     spawn_URDF_asmbrobot = URDFSpawner(
-        name='asmb_robot', #此处修改模型名
+        name='asmb_robot',              #此处修改模型名
         urdf_path=robot_description_path,
-        translation='0 0 0.6',
+        translation='0 0 0.01',         #结合urdf文件中虚拟节点调整模型位置
         rotation='0 0 1 -1.5708',
     )
 
