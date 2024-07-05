@@ -6,14 +6,12 @@ For more information, please see http://wiki.ros.org/sw_urdf_exporter
 -->
 <robot name="ASMBRobot">
 	<webots>
-		<plugin type="webots_ros2_control::Ros2Control" />
+		<plugin type="webots_ros2_control::Ros2Control"/>
 	</webots>
 	<!-- Data files required by the UR driver -->
 	<ros2_control name="WebotsControl" type="system">
 		<hardware>
-			<plugin>
-				webots_ros2_control::Ros2ControlSystem
-			</plugin>
+			<plugin>webots_ros2_control::Ros2ControlSystem</plugin>
 		</hardware>
 	</ros2_control>
 	<!--

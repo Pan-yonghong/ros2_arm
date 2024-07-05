@@ -5,9 +5,9 @@ moveit_setup_assistant_config:
   srdf:
     relative_path: config/ASMBRobot.srdf
   package_settings:
-    author_name: 1
-    author_email: 1
-    generated_timestamp: 1720087426
+    author_name: pyh
+    author_email: pyh
+    generated_timestamp: 1720143638
   control_xacro:
     command:
       - position
