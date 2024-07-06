@@ -1,7 +1,13 @@
+# MoveIt uses this configuration for controller management
+
+# moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+
+# moveit_simple_controller_manager:
 controller_names:
   - asmbrobot/right_arm_controller
   - asmbrobot/left_arm_controller
-  - asmbrobot/hand_group_controller
+  - asmbrobot/right_hand_controller
+  - asmbrobot/left_hand_controller
 
 asmbrobot/right_arm_controller:
   type: FollowJointTrajectory
@@ -15,7 +21,8 @@ asmbrobot/right_arm_controller:
     - right_arm_joint5
     - right_arm_joint6
     - right_arm_joint7
-    - right_finger_joint2
+  action_ns: follow_joint_trajectory
+  default: true
 asmbrobot/left_arm_controller:
   type: FollowJointTrajectory
   action_ns: follow_joint_trajectory
@@ -28,11 +35,19 @@ asmbrobot/left_arm_controller:
     - left_arm_joint5
     - left_arm_joint6
     - left_arm_joint7
-    - left_finger_joint2
-asmbrobot/hand_group_controller:
+  action_ns: follow_joint_trajectory
+  default: true
+asmbrobot/right_hand_controller:
   type: GripperCommand
   joints:
     - right_finger_joint1
     - right_finger_joint2
+  action_ns: gripper_cmd
+  default: true
+asmbrobot/left_hand_controller:
+  type: GripperCommand
+  joints:
+    - left_finger_joint1
+    - left_finger_joint2
   action_ns: gripper_cmd
   default: true
