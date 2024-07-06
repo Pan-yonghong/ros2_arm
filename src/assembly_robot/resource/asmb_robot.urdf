@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
-     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter --> 
 <robot name="asmb_robot">
     <webots>
+        <device reference="right_hand_camera" type="Camera">
+            <ros>
+                <topicName>/right_hand_camera</topicName>
+                <alwaysOn>true</alwaysOn>
+            </ros>
+        </device>
+        <device reference="left_hand_camera" type="Camera">
+            <ros>
+                <topicName>/left_hand_camera</topicName>
+                <alwaysOn>true</alwaysOn>
+            </ros>
+        </device>
+        <device reference="head_camera" type="RangeFinder">
+            <ros>
+                <topicName>/head_camera</topicName>
+                <alwaysOn>true</alwaysOn>
+            </ros>
+        </device>
         <plugin type="webots_ros2_control::Ros2Control"/>
     </webots>
 
@@ -67,6 +85,15 @@
           <!-- initial position for the FakeSystem -->
         </joint>
         <joint name="right_arm_joint7">
+          <command_interface name="position">
+            </command_interface>
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+          <state_interface name="effort"/>
+          <param name="initial_position">0.0</param>
+          <!-- initial position for the FakeSystem -->
+        </joint>
+        <joint name="right_finger_joint1">
           <command_interface name="position">
             </command_interface>
           <state_interface name="position"/>
@@ -158,6 +185,7 @@
         </joint>
     </ros2_control>
 
+    <!-- 虚拟节点 -->
     <link name="base_footprint"/>
     <joint name="base_joint" type="fixed">
         <parent link="base_footprint"/>
@@ -204,8 +232,7 @@
       </geometry>
     </collision>
   </link>
-  <link
-    name="head_camera_Link">
+  <link name="head_camera_Link">
     <inertial>
       <origin
         xyz="0.013458 -0.061285 -0.0031032"
@@ -244,8 +271,14 @@
       </geometry>
     </collision>
   </link>
-  <joint
-    name="head_camera_joint"
+  <link name="range-finder">
+  </link>
+  <joint name="head_camera_Link_range-finder_joint" type="fixed">
+    <parent link="head_camera_Link"/>
+    <child link="range-finder"/>
+    <origin xyz="0 -0.05 0" rpy="0 0.261799 0"/>
+  </joint>
+  <joint name="head_camera_joint"
     type="revolute">
     <origin
       xyz="0.0875 0.065 1.6145"
@@ -262,8 +295,7 @@
       effort="100"
       velocity="1" />
   </joint>
-  <link
-    name="right_arm_Link1">
+  <link name="right_arm_Link1">
     <inertial>
       <origin
         xyz="0.011228 -0.043139 9.719E-07"
@@ -610,8 +642,7 @@
       effort="100"
       velocity="1" />
   </joint>
-  <link
-    name="right_arm_Link7">
+  <link name="right_arm_Link7">
     <inertial>
       <origin
         xyz="0.00714396022442265 0.00235971596269616 -0.073770341517848"
@@ -650,8 +681,7 @@
       </geometry>
     </collision>
   </link>
-  <joint
-    name="right_arm_joint7"
+  <joint name="right_arm_joint7"
     type="revolute">
     <origin
       xyz="-0.05 0 -0.067"
@@ -668,8 +698,14 @@
       effort="100"
       velocity="1" />
   </joint>
-  <link
-    name="right_finger_link1">
+  <link name="right_hand_camera">
+  </link>
+  <joint name="right_arm_Link7_right_hand_camera_joint" type="fixed">
+    <parent link="right_arm_Link7"/>
+    <child link="right_hand_camera"/>
+    <origin xyz="0.03 0 -0.15732" rpy="-4.712389 1.308997 -4.712389"/>
+  </joint>
+  <link name="right_finger_link1">
     <inertial>
       <origin
         xyz="0.00378952208500735 0.18602302823187 0.213635882113623"
@@ -726,8 +762,7 @@
       effort="100"
       velocity="1" />
   </joint>
-  <link
-    name="right_finger_link2">
+  <link name="right_finger_link2">
     <inertial>
       <origin
         xyz="0.00378952208500025 0.21202302823187 0.213635882113621"
@@ -1074,8 +1109,7 @@
       effort="100"
       velocity="1" />
   </joint>
-  <link
-    name="left_arm_Link6">
+  <link name="left_arm_Link6">
     <inertial>
       <origin
         xyz="-0.0205835191216947 3.86713536193461E-09 -0.0390232072359369"
@@ -1114,8 +1148,7 @@
       </geometry>
     </collision>
   </link>
-  <joint
-    name="left_arm_joint6"
+  <joint name="left_arm_joint6"
     type="revolute">
     <origin
       xyz="0.044 0 -0.076"
@@ -1132,8 +1165,7 @@
       effort="100"
       velocity="1" />
   </joint>
-  <link
-    name="left_arm_link7">
+  <link name="left_arm_link7">
     <inertial>
       <origin
         xyz="0.00714707073326404 -0.00229274231656032 -0.0737703415178471"
@@ -1172,8 +1204,7 @@
       </geometry>
     </collision>
   </link>
-  <joint
-    name="left_arm_joint7"
+  <joint name="left_arm_joint7"
     type="revolute">
     <origin
       xyz="-0.044 0 -0.067"
@@ -1190,8 +1221,14 @@
       effort="100"
       velocity="1" />
   </joint>
-  <link
-    name="left_finger_link1">
+  <link name="left_hand_camera">
+  </link>
+  <joint name="left_arm_link7_left_hand_camera_joint" type="fixed">
+    <parent link="left_arm_link7"/>
+    <child link="left_hand_camera"/>
+    <origin xyz="0.03 0 -0.15732" rpy="-4.712389 1.308997 -4.712389"/>
+  </joint>
+  <link name="left_finger_link1">
     <inertial>
       <origin
         xyz="6.80011602582908E-16 -0.00411763664848558 0.00481108166244198"
@@ -1230,8 +1267,7 @@
       </geometry>
     </collision>
   </link>
-  <joint
-    name="left_finger_joint1"
+  <joint name="left_finger_joint1"
     type="prismatic">
     <origin
       xyz="0 -0.013 -0.1435"
@@ -1248,8 +1284,7 @@
       effort="100"
       velocity="1" />
   </joint>
-  <link
-    name="left_finger_link2">
+  <link name="left_finger_link2">
     <inertial>
       <origin
         xyz="-1.19348975147204E-15 0.00411763664848627 0.00481108166244132"
@@ -1288,8 +1323,7 @@
       </geometry>
     </collision>
   </link>
-  <joint
-    name="left_finger_joint2"
+  <joint name="left_finger_joint2"
     type="prismatic">
     <origin
       xyz="0 0.013 -0.1435"

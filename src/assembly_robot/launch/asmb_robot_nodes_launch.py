@@ -45,7 +45,7 @@ def generate_launch_description():
 
     # Driver nodes
     # When having multiple robot it is mandatory to specify the robot name.
-    universal_robot_driver = WebotsController(
+    asmb_robot_driver = WebotsController(
         robot_name='asmb_robot',
         namespace='asmbrobot',
         parameters=[
@@ -60,13 +60,21 @@ def generate_launch_description():
     controller_manager_timeout = ['--controller-manager-timeout', '100']
     controller_manager_prefix = 'python.exe' if os.name == 'nt' else ''
 
-    # 负责启动轨迹控制器，控制机械臂的运动轨迹
-    trajectory_controller_spawner = Node(
+    # 启动右臂轨迹控制器，控制机械臂的运动轨迹
+    right_arm_trajectory_controller_spawner = Node(
         package='controller_manager',
         executable='spawner',
         output='screen',
         prefix=controller_manager_prefix,
-        arguments=['right_group_controller', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
+        arguments=['right_arm_controller', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
+    )
+
+    left_arm_trajectory_controller_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        output='screen',
+        prefix=controller_manager_prefix,
+        arguments=['left_arm_controller', '-c', 'asmbrobot/controller_manager'] + controller_manager_timeout,
     )
 
     # 启动关节状态广播器，用于发布机器人的关节状态信息
@@ -94,21 +102,22 @@ def generate_launch_description():
         spawn_URDF_asmbrobot, 
         # Other ROS 2 nodes
         robot_state_publisher,
-        trajectory_controller_spawner,
+        right_arm_trajectory_controller_spawner,
+        left_arm_trajectory_controller_spawner,
         joint_state_broadcaster_spawner,
 
         # Launch the driver node once the URDF robot is spawned
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessIO(
                 target_action=spawn_URDF_asmbrobot,
-                on_stdout=lambda event: get_webots_driver_node(event, universal_robot_driver),
+                on_stdout=lambda event: get_webots_driver_node(event, asmb_robot_driver),
             )
         ),
 
         # Kill all the nodes when the driver node is shut down
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(
-                target_action=universal_robot_driver,
+                target_action=asmb_robot_driver,
                 on_exit=[launch.actions.EmitEvent(event=launch.events.Shutdown())],
             )
         ),

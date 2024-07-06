@@ -3,16 +3,19 @@ asmbrobot/controller_manager:
   ros__parameters:
     update_rate: 50  # Hz
 
-    right_group_controller:
+    right_arm_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
-    left_group_controller:
+    left_arm_controller:
       type: joint_trajectory_controller/JointTrajectoryController
+
+    hand_group_controller:
+      type: position_controllers/GripperActionController
 
     asm_joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-asmbrobot/right_group_controller:
+asmbrobot/right_arm_controller:
   ros__parameters:
     joints:
       - right_arm_joint1
@@ -30,7 +33,7 @@ asmbrobot/right_group_controller:
       - velocity
     allow_partial_joints_goal: true
 
-asmbrobot/left_group_controller:
+asmbrobot/left_arm_controller:
   ros__parameters:
     joints:
       - left_arm_joint1
@@ -46,4 +49,11 @@ asmbrobot/left_group_controller:
     state_interfaces:
       - position
       - velocity
+    allow_partial_joints_goal: true
+
+asmbrobot/hand_group_controller:
+  ros__parameters:
+    joints:
+      - right_finger_joint1
+      - right_finger_joint2
     allow_partial_joints_goal: true

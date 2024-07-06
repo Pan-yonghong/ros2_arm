@@ -46,7 +46,8 @@ setup(
     entry_points={
         'launch.frontend.launch_extension': ['launch_ros = launch_ros'],
         'console_scripts': [
-            'asmbrobot_controller = assembly_robot.asmb_robot_controller:main'
+            'asmbrobot_right_arm_controller = assembly_robot.asmb_robot_rightarm_controller:main',
+            'asmbrobot_left_arm_controller = assembly_robot.asmb_robot_leftarm_controller:main'
         ]
     }
 )

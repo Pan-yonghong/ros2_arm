@@ -30,6 +30,7 @@ GOAL = {
         'right_arm_joint5',
         'right_arm_joint6',
         'right_arm_joint7',
+        'right_figner_joint1',
         'right_figner_joint2',
         'left_arm_joint1',
         'left_arm_joint2',
@@ -38,6 +39,7 @@ GOAL = {
         'left_arm_joint5',
         'left_arm_joint6',
         'left_arm_joint7',
+        'left_figner_joint1',
         'left_figner_joint2',
     ],
     'points': [
@@ -113,7 +115,7 @@ def main(args=None):
     rclpy.init(args=args)
 
     # 创建一个FollowJointTrajectoryClient实例，指定控制器名称和ROS服务主题路径，用于与机器人控制器通信
-    controller = FollowJointTrajectoryClient('asmbrobot_controller', '/asmbrobot/right_group_controller')
+    controller = FollowJointTrajectoryClient('asmbrobot_right_arm_controller', '/asmbrobot/right_arm_controller')
     controller.send_goal(GOAL, 10)
     
     rclpy.spin(controller)

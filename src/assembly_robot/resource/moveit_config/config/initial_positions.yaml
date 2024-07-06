@@ -1,0 +1,5 @@
+# Default initial positions for asmb_robot's ros2_control fake system
+
+initial_positions:
+  right_finger_joint1: 0
+  right_finger_joint2: 0
