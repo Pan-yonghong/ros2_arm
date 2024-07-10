@@ -47,7 +47,8 @@ setup(
         'launch.frontend.launch_extension': ['launch_ros = launch_ros'],
         'console_scripts': [
             'asmbrobot_right_arm_controller = assembly_robot.asmb_robot_rightarm_controller:main',
-            'asmbrobot_left_arm_controller = assembly_robot.asmb_robot_leftarm_controller:main'
+            'asmbrobot_left_arm_controller = assembly_robot.asmb_robot_leftarm_controller:main',
+            # 'asmbrobot_right_hand_controller = assembly_robot.asmb_robot_righthand_controller:main'
         ]
     }
 )

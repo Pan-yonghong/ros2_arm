@@ -1,67 +1,1050 @@
 #VRML_SIM R2023b utf8
 
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/ThreadMetalPlate.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/fruits/protos/Apple.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/tables/protos/Table.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/drinks/protos/Can.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/VarnishedPine.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/fruits/protos/Apple.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/apartment_structure/protos/Wall.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Roughcast.proto"
 
 WorldInfo {
-  info [
-    "Assembly Robot."
-  ]
-  title "Assembly Robot"
-  basicTimeStep 20
-  physicsDisableAngularThreshold 0.1
-  contactProperties [
-    ContactProperties {
-      bounce 0.1
-    }
-    ContactProperties {
-      material1 "slope"
-      coulombFriction [
-        0.5
-      ]
-    }
-  ]
 }
 Viewpoint {
-  orientation 0.22390871642363427 -0.19400308962048382 -0.9551061134383064 4.440183679126743
-  position 4.1126783777589795 -12.596393132902515 7.114709534713935
-  exposure 1.7
+  orientation -0.24751841722946893 -0.11666406062694243 0.9618337330798145 3.9928582332518814
+  position 2.815265572052647 3.0988823005847923 2.978068750693372
 }
 TexturedBackground {
-  texture "factory"
+}
+TexturedBackgroundLight {
 }
 Floor {
-  size 20 20
-  tileSize 0.01 0.01
-  appearance ThreadMetalPlate {
-  }
-}
-Can {
-  translation -0.2 -0.39 0.86
-}
-Table {
-  translation -0.0388 -0.688 0
-  rotation 0 0 1 1.5708
-  size 1 1.8 0.8
-  trayAppearance VarnishedPine {
-    colorOverride 0.929412 0.929412 0.929412
-    textureTransform TextureTransform {
-      scale 10 10
-    }
-  }
-  legAppearance VarnishedPine {
-    colorOverride 0 0 0
-    textureTransform TextureTransform {
-      scale 4 4
-    }
-    IBLStrength 5
-  }
 }
 Apple {
-  translation 0.2 -0.37 0.86
+  hidden linearVelocity_0 -5.2353627924180266e-12 9.675992106552846e-13 -4.7369515717164204e-17
+  hidden angularVelocity_0 -1.944354007152204e-11 -1.0520263395265443e-10 -1.4538858328130154e-26
+  translation -0.07803903766543045 -0.16679792794930942 0.06976455955296523
+  rotation 0.6783050434256515 0.4172080984558816 -0.6048468158518752 -2.639057226382801
+}
+Robot {
+  children [
+    Shape {
+      appearance DEF base_link_material PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry DEF base_link Mesh {
+        url [
+          "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/base_link.STL"
+        ]
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 3650.152541379606
+        axis 0 1 0
+        anchor 0.0875 0.065 1.6145
+      }
+      device [
+        RotationalMotor {
+          name "head_camera_joint"
+          maxVelocity 1
+          minPosition -1.57
+          maxPosition 3650.152541439756
+          maxTorque 100
+        }
+        PositionSensor {
+          name "head_camera_joint_sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.1073290000218232 0.065 1.6118700001645365
+        rotation 2.948815607037023e-07 0.9999999999999547 5.8794481183298216e-08 0.13089966955072263
+        children [
+          RangeFinder {
+            rotation 0 1 0 0.7854003061004253
+            maxRange 3
+          }
+          Shape {
+            appearance DEF head_camera_Link_material PBRAppearance {
+              roughness 1
+              metalness 0
+            }
+            geometry DEF head_camera_Link Mesh {
+              url [
+                "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/head_camera_Link.STL"
+              ]
+            }
+          }
+        ]
+        name "head_camera_Link"
+        boundingObject USE head_camera_Link
+        physics Physics {
+          density -1
+          mass 0.061182
+          centerOfMass [
+            0.013458 -0.061285 -0.003103
+          ]
+          inertiaMatrix [
+            3.911e-05 4.5618e-06 3.9266e-05
+            4.0531e-07 4.5885e-08 -9.4269e-08
+          ]
+        }
+        linearVelocity 2.9245310583138533e-09 -6.754283065256013e-16 1.2840232213614608e-08
+        angularVelocity -3.647233862183723e-15 -3.918643581211873e-07 -1.8881709551578316e-14
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 0.7942688782568234
+        axis 0 -1 0
+        anchor 0 -0.1469 1.319
+      }
+      device [
+        RotationalMotor {
+          name "right_arm_joint1"
+          maxVelocity 1
+          minPosition -3.14
+          maxPosition 3.14
+          maxTorque 100
+        }
+        PositionSensor {
+          name "right_arm_joint1_sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 -0.1469 1.319
+        rotation 0 -1 0 0.008870712675040509
+        children [
+          Shape {
+            appearance DEF right_arm_Link1_material PBRAppearance {
+              roughness 1
+              metalness 0
+            }
+            geometry DEF right_arm_Link1 Mesh {
+              url [
+                "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/right_arm_Link1.STL"
+              ]
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              position 0.0004202808798247154
+              axis -1 0 0
+              anchor 0.057 -0.0536 0
+            }
+            device [
+              RotationalMotor {
+                name "right_arm_joint2"
+                maxVelocity 1
+                minPosition -3.14
+                maxPosition 0.00038032991077504707
+                maxTorque 100
+              }
+              PositionSensor {
+                name "right_arm_joint2_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0.057 -0.0536 0
+              rotation -1 0 0 0.0004202808793821079
+              children [
+                Shape {
+                  appearance DEF right_arm_Link2_material PBRAppearance {
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF right_arm_Link2 Mesh {
+                    url [
+                      "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/right_arm_Link2.STL"
+                    ]
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position -0.000398384857142711
+                    axis 0 0 -1
+                    anchor -0.057 0 -0.15815
+                  }
+                  device [
+                    RotationalMotor {
+                      name "right_arm_joint3"
+                      maxVelocity 1
+                      minPosition -3.14
+                      maxPosition 3.14
+                      maxTorque 100
+                    }
+                    PositionSensor {
+                      name "right_arm_joint3_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation -0.057 0 -0.15815
+                    rotation 0 0 1 0.0003983848568419997
+                    children [
+                      Shape {
+                        appearance DEF right_arm_Link3_material PBRAppearance {
+                          roughness 1
+                          metalness 0
+                        }
+                        geometry DEF right_arm_Link3 Mesh {
+                          url [
+                            "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/right_arm_Link3.STL"
+                          ]
+                        }
+                      }
+                      HingeJoint {
+                        jointParameters HingeJointParameters {
+                          position 0.0003230917417315571
+                          axis 0 1 0
+                          anchor 0 -0.052 -0.12135
+                        }
+                        device [
+                          RotationalMotor {
+                            name "right_arm_joint4"
+                            maxVelocity 1
+                            minPosition -1.57
+                            maxPosition 1.57
+                            maxTorque 100
+                          }
+                          PositionSensor {
+                            name "right_arm_joint4_sensor"
+                          }
+                        ]
+                        endPoint Solid {
+                          translation 0 -0.052 -0.12135
+                          rotation 0 1 0 0.00032309174140428634
+                          children [
+                            Shape {
+                              appearance DEF right_arm_Link4_material PBRAppearance {
+                                roughness 1
+                                metalness 0
+                              }
+                              geometry DEF right_arm_Link4 Mesh {
+                                url [
+                                  "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/right_arm_Link4.STL"
+                                ]
+                              }
+                            }
+                            HingeJoint {
+                              jointParameters HingeJointParameters {
+                                position -0.0003598214571538978
+                                axis 0 0 -1
+                                anchor 0 0.052 -0.15815
+                              }
+                              device [
+                                RotationalMotor {
+                                  name "right_arm_joint5"
+                                  maxVelocity 1
+                                  minPosition -3.14
+                                  maxPosition 3.14
+                                  maxTorque 100
+                                }
+                                PositionSensor {
+                                  name "right_arm_joint5_sensor"
+                                }
+                              ]
+                              endPoint Solid {
+                                translation 0 0.052 -0.15815
+                                rotation 0 0 1 0.000359821457110199
+                                children [
+                                  Shape {
+                                    appearance DEF right_arm_Link5_material PBRAppearance {
+                                      roughness 1
+                                      metalness 0
+                                    }
+                                    geometry DEF right_arm_Link5 Mesh {
+                                      url [
+                                        "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/right_arm_Link5.STL"
+                                      ]
+                                    }
+                                  }
+                                  HingeJoint {
+                                    jointParameters HingeJointParameters {
+                                      position -0.00042055549490772534
+                                      anchor 0.05 0 -0.07985
+                                    }
+                                    device [
+                                      RotationalMotor {
+                                        name "right_arm_joint6"
+                                        maxVelocity 1
+                                        minPosition -1.57
+                                        maxPosition 1.57
+                                        maxTorque 100
+                                      }
+                                      PositionSensor {
+                                        name "right_arm_joint6_sensor"
+                                      }
+                                    ]
+                                    endPoint Solid {
+                                      translation 0.05 0 -0.07985
+                                      rotation -1 0 0 0.0004205554950599211
+                                      children [
+                                        Shape {
+                                          appearance DEF right_arm_Link6_material PBRAppearance {
+                                            roughness 1
+                                            metalness 0
+                                          }
+                                          geometry DEF right_arm_Link6 Mesh {
+                                            url [
+                                              "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/right_arm_Link6.STL"
+                                            ]
+                                          }
+                                        }
+                                        HingeJoint {
+                                          jointParameters HingeJointParameters {
+                                            position -0.0003806382058251599
+                                            axis 0 0 -1
+                                            anchor -0.05 0 -0.067
+                                          }
+                                          device [
+                                            RotationalMotor {
+                                              name "right_arm_joint7"
+                                              maxVelocity 1
+                                              minPosition -3.14
+                                              maxPosition 3.14
+                                              maxTorque 100
+                                            }
+                                            PositionSensor {
+                                              name "right_arm_joint7_sensor"
+                                            }
+                                          ]
+                                          endPoint Solid {
+                                            translation -0.05 0 -0.067
+                                            rotation 0 0 1 0.00038063820569642033
+                                            children [
+                                              Camera {
+                                                translation 0.03 -1.73472e-18 -0.15732
+                                                rotation 0 -1 0 -1.8325953071795862
+                                                name "right_hand_camera"
+                                              }
+                                              Shape {
+                                                appearance DEF right_arm_Link7_material PBRAppearance {
+                                                  roughness 1
+                                                  metalness 0
+                                                }
+                                                geometry DEF right_arm_Link7 Mesh {
+                                                  url [
+                                                    "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/right_arm_Link7.STL"
+                                                  ]
+                                                }
+                                              }
+                                              SliderJoint {
+                                                jointParameters JointParameters {
+                                                  position 1.0381633908738956e-06
+                                                  axis 0 1 0
+                                                }
+                                                device [
+                                                  LinearMotor {
+                                                    name "right_finger_joint1"
+                                                    maxVelocity 1
+                                                    maxPosition 0.013
+                                                    maxForce 100
+                                                  }
+                                                  PositionSensor {
+                                                    name "right_finger_joint1_sensor"
+                                                  }
+                                                ]
+                                                endPoint Solid {
+                                                  translation 0 0.013001038163390873 -0.1435
+                                                  children [
+                                                    Shape {
+                                                      appearance DEF right_finger_link1_material PBRAppearance {
+                                                        roughness 1
+                                                        metalness 0
+                                                      }
+                                                      geometry DEF right_finger_link1 Mesh {
+                                                        url [
+                                                          "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/right_finger_link1.STL"
+                                                        ]
+                                                      }
+                                                    }
+                                                  ]
+                                                  name "right_finger_link1"
+                                                  boundingObject USE right_finger_link1
+                                                  physics Physics {
+                                                    density -1
+                                                    mass 10.266154
+                                                    centerOfMass [
+                                                      0.00379 0.186023 0.213636
+                                                    ]
+                                                    inertiaMatrix [
+                                                      3.029228 2.823057 0.2620905
+                                                      -6.900533e-05 -0.01366939 -0.001101552
+                                                    ]
+                                                  }
+                                                  linearVelocity -0.0003882635484090873 6.373795132294084e-06 -2.1738682914352397e-06
+                                                  angularVelocity -1.639276672115069e-05 -0.00035943626869005207 0.0019368286697323837
+                                                }
+                                              }
+                                              SliderJoint {
+                                                jointParameters JointParameters {
+                                                  position 1.0381634210346517e-06
+                                                  axis 0 1 0
+                                                }
+                                                device [
+                                                  LinearMotor {
+                                                    name "right_finger_joint2"
+                                                    maxVelocity 1
+                                                    maxPosition 0.013
+                                                    maxForce 100
+                                                  }
+                                                  PositionSensor {
+                                                    name "right_finger_joint2_sensor"
+                                                  }
+                                                ]
+                                                endPoint Solid {
+                                                  translation 0 -0.012998961836578964 -0.1435
+                                                  children [
+                                                    Shape {
+                                                      appearance DEF right_finger_link2_material PBRAppearance {
+                                                        roughness 1
+                                                        metalness 0
+                                                      }
+                                                      geometry DEF right_finger_link2 Mesh {
+                                                        url [
+                                                          "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/right_finger_link2.STL"
+                                                        ]
+                                                      }
+                                                    }
+                                                  ]
+                                                  name "right_finger_link2"
+                                                  boundingObject USE right_finger_link2
+                                                  physics Physics {
+                                                    density -1
+                                                    mass 10.266154
+                                                    centerOfMass [
+                                                      0.00379 0.212023 0.213636
+                                                    ]
+                                                    inertiaMatrix [
+                                                      3.029228 2.823057 0.2620905
+                                                      -6.900533e-05 -0.01366939 -0.001101552
+                                                    ]
+                                                  }
+                                                  linearVelocity -0.00038826354842964286 6.373795336654723e-06 -2.1738683460962405e-06
+                                                  angularVelocity -1.6392767523746495e-05 -0.00035943626868900137 0.0019368286697394436
+                                                }
+                                              }
+                                            ]
+                                            name "right_arm_Link7"
+                                            boundingObject USE right_arm_Link7
+                                            physics Physics {
+                                              density -1
+                                              mass 0.235934
+                                              centerOfMass [
+                                                0.007144 0.00236 -0.07377
+                                              ]
+                                              inertiaMatrix [
+                                                9.625577e-05 6.877059e-05 6.395129e-05
+                                                1.485596e-07 1.560103e-06 1.667437e-08
+                                              ]
+                                            }
+                                            linearVelocity 4.193447366450253e-05 1.3301812056905931e-05 2.756390993719553e-06
+                                            angularVelocity -1.6418678538253912e-05 -0.0003603634982304757 0.0019374515748710435
+                                          }
+                                        }
+                                      ]
+                                      name "right_arm_Link6"
+                                      boundingObject USE right_arm_Link6
+                                      physics Physics {
+                                        density -1
+                                        mass 0.077238
+                                        centerOfMass [
+                                          -0.028442 -9e-06 -0.043091
+                                        ]
+                                        inertiaMatrix [
+                                          4.994659e-05 6.348977e-05 4.596822e-05
+                                          -9.962412e-09 -1.771919e-05 -1.901031e-09
+                                        ]
+                                      }
+                                      linearVelocity 5.557732653302865e-06 2.7328790281723342e-05 7.713413044784077e-06
+                                      angularVelocity -1.0923972795533177e-05 -0.0003629160570432344 0.0012885872262505505
+                                    }
+                                  }
+                                ]
+                                name "right_arm_Link5"
+                                boundingObject USE right_arm_Link5
+                                physics Physics {
+                                  density -1
+                                  mass 0.365187
+                                  centerOfMass [
+                                    0.008325 -7e-06 -0.064733
+                                  ]
+                                  inertiaMatrix [
+                                    0.0003238729 0.000341252 0.0002917126
+                                    -9.059972e-08 3.060261e-05 3.032614e-08
+                                  ]
+                                }
+                                linearVelocity -2.1064422960724384e-05 1.0294752939006685e-05 2.6396694314081607e-06
+                                angularVelocity -1.1082274463006535e-05 -0.0003643974631891549 0.0012903790990879426
+                              }
+                            }
+                          ]
+                          name "right_arm_Link4"
+                          boundingObject USE right_arm_Link4
+                          physics Physics {
+                            density -1
+                            mass 0.47713
+                            centerOfMass [
+                              -1.8e-05 0.039272 -0.10244
+                            ]
+                            inertiaMatrix [
+                              0.00079717 0.00075314 0.00042587
+                              3.4424e-08 2.6365e-07 0.00011151
+                            ]
+                          }
+                          linearVelocity -6.237568727840334e-05 -3.4670958827415656e-07 -7.310152261078549e-07
+                          angularVelocity -5.585372970129442e-06 -0.0003658376043559025 0.0006418410597595301
+                        }
+                      }
+                    ]
+                    name "right_arm_Link3"
+                    boundingObject USE right_arm_Link3
+                    physics Physics {
+                      density -1
+                      mass 0.12999
+                      centerOfMass [
+                        0 -0.025876 -0.041251
+                      ]
+                      inertiaMatrix [
+                        0.00030536 0.00034017 0.00011537
+                        -5.266e-13 9.7607e-11 -5.0968e-05
+                      ]
+                    }
+                    linearVelocity -5.974599043889715e-05 -2.1148237685664394e-07 -6.655266536296187e-07
+                    angularVelocity -5.88776032574868e-06 0.0004652709803187317 0.0006434848963802402
+                  }
+                }
+              ]
+              name "right_arm_Link2"
+              boundingObject USE right_arm_Link2
+              physics Physics {
+                density -1
+                mass 0.47028
+                centerOfMass [
+                  -0.043622 -1.8e-05 -0.10408
+                ]
+                inertiaMatrix [
+                  0.00068469 0.00076516 0.00042244
+                  -3.4424e-08 -0.00011014 2.6661e-07
+                ]
+              }
+              linearVelocity -3.7483799972534904e-05 -1.508514312971884e-07 -6.6730106635131475e-06
+              angularVelocity -1.0957004370952185e-07 0.0004654525938347685 -3.306110738573357e-06
+            }
+          }
+        ]
+        name "right_arm_Link1"
+        boundingObject USE right_arm_Link1
+        physics Physics {
+          density -1
+          mass 0.37147
+          centerOfMass [
+            0.011228 -0.043139 1e-06
+          ]
+          inertiaMatrix [
+            0.00033016 0.0003504 0.00035955
+            4.0254e-05 -9.06e-08 -3.4341e-08
+          ]
+        }
+        linearVelocity 5.4734564577072675e-06 -1.1400763494464282e-07 -5.208904766082925e-06
+        angularVelocity -3.5032472014755763e-09 0.0004667960498230071 -1.5199302060860642e-06
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -6.5601646427174765e-06
+        axis 0 1 0
+        anchor 0 0.1469 1.319
+      }
+      device [
+        RotationalMotor {
+          name "left_arm_joint1"
+          maxVelocity 1
+          minPosition -3.14
+          maxPosition 3.14
+          maxTorque 100
+        }
+        PositionSensor {
+          name "left_arm_joint1_sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.1469 1.319
+        rotation 0 -1 0 6.560167463425645e-06
+        children [
+          Shape {
+            appearance DEF left_arm_Link1_material PBRAppearance {
+              roughness 1
+              metalness 0
+            }
+            geometry DEF left_arm_Link1 Mesh {
+              url [
+                "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/left_arm_Link1.STL"
+              ]
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              position 4.864322042454277e-06
+              axis -1 0 0
+              anchor 0.057 0.0536 0
+            }
+            device [
+              RotationalMotor {
+                name "left_arm_joint2"
+                maxVelocity 1
+                minPosition -3.14
+                maxPosition 6.027431875513193e-06
+                maxTorque 100
+              }
+              PositionSensor {
+                name "left_arm_joint2_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0.057 0.0536 0
+              rotation -1 0 0 4.864356203984521e-06
+              children [
+                Shape {
+                  appearance DEF left_arm_Link2_material PBRAppearance {
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF left_arm_Link2 Mesh {
+                    url [
+                      "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/left_arm_Link2.STL"
+                    ]
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position -1.0507407927106506e-06
+                    axis 0 0 -1
+                    anchor -0.057 0 -0.15815
+                  }
+                  device [
+                    RotationalMotor {
+                      name "left_arm_joint3"
+                      maxVelocity 1
+                      minPosition -3.14
+                      maxPosition 3.14
+                      maxTorque 100
+                    }
+                    PositionSensor {
+                      name "left_arm_joint3_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation -0.057 0 -0.15815
+                    rotation 0 0 1 1.0507167913797138e-06
+                    children [
+                      Shape {
+                        appearance DEF left_arm_Link3_material PBRAppearance {
+                          roughness 1
+                          metalness 0
+                        }
+                        geometry DEF left_arm_Link3 Mesh {
+                          url [
+                            "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/left_arm_Link3.STL"
+                          ]
+                        }
+                      }
+                      HingeJoint {
+                        jointParameters HingeJointParameters {
+                          position 2.635834237536753e-06
+                          axis 0 -1 0
+                          anchor 0 0.052 -0.12135
+                        }
+                        device [
+                          RotationalMotor {
+                            name "left_arm_joint4"
+                            maxVelocity 1
+                            minPosition -1.57
+                            maxPosition 1.57
+                            maxTorque 100
+                          }
+                          PositionSensor {
+                            name "left_arm_joint4_sensor"
+                          }
+                        ]
+                        endPoint Solid {
+                          translation 0 0.052 -0.12135
+                          rotation 0 -1 0 2.6357791255898862e-06
+                          children [
+                            Shape {
+                              appearance DEF left_arm_Link4_material PBRAppearance {
+                                roughness 1
+                                metalness 0
+                              }
+                              geometry DEF left_arm_Link4 Mesh {
+                                url [
+                                  "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/left_arm_Link4.STL"
+                                ]
+                              }
+                            }
+                            HingeJoint {
+                              jointParameters HingeJointParameters {
+                                position -2.074033631854985e-07
+                                axis 0 0 -1
+                                anchor 0 -0.052 -0.162
+                              }
+                              device [
+                                RotationalMotor {
+                                  name "left_arm_joint5"
+                                  maxVelocity 1
+                                  minPosition -3.14
+                                  maxPosition 3.14
+                                  maxTorque 100
+                                }
+                                PositionSensor {
+                                  name "left_arm_joint5_sensor"
+                                }
+                              ]
+                              endPoint Solid {
+                                translation 0 -0.052 -0.162
+                                rotation 0 0 1 2.0647654623614288e-07
+                                children [
+                                  Shape {
+                                    appearance DEF left_arm_Link5_material PBRAppearance {
+                                      roughness 1
+                                      metalness 0
+                                    }
+                                    geometry DEF left_arm_Link5 Mesh {
+                                      url [
+                                        "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/left_arm_Link5.STL"
+                                      ]
+                                    }
+                                  }
+                                  HingeJoint {
+                                    jointParameters HingeJointParameters {
+                                      position 1.4246846311010605e-06
+                                      anchor 0.044 0 -0.076
+                                    }
+                                    device [
+                                      RotationalMotor {
+                                        name "left_arm_joint6"
+                                        maxVelocity 1
+                                        minPosition -1.57
+                                        maxPosition 1.57
+                                        maxTorque 100
+                                      }
+                                      PositionSensor {
+                                        name "left_arm_joint6_sensor"
+                                      }
+                                    ]
+                                    endPoint Solid {
+                                      translation 0.044 0 -0.076
+                                      rotation 1 0 0 1.4246008876225201e-06
+                                      children [
+                                        Shape {
+                                          appearance DEF left_arm_Link6_material PBRAppearance {
+                                            roughness 1
+                                            metalness 0
+                                          }
+                                          geometry DEF left_arm_Link6 Mesh {
+                                            url [
+                                              "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/left_arm_Link6.STL"
+                                            ]
+                                          }
+                                        }
+                                        HingeJoint {
+                                          jointParameters HingeJointParameters {
+                                            position 1.1514795348759005e-10
+                                            axis 0 0 -1
+                                            anchor -0.044 0 -0.067
+                                          }
+                                          device [
+                                            RotationalMotor {
+                                              name "left_arm_joint7"
+                                              maxVelocity 1
+                                              minPosition -3.14
+                                              maxPosition 3.14
+                                              maxTorque 100
+                                            }
+                                            PositionSensor {
+                                              name "left_arm_joint7_sensor"
+                                            }
+                                          ]
+                                          endPoint Solid {
+                                            translation -0.044 0 -0.067
+                                            rotation 0 0 -1 0
+                                            children [
+                                              Camera {
+                                                translation 0.03 -1.73472e-18 -0.15732
+                                                rotation 0 -1 0 -1.8325953071795862
+                                                name "left_hand_camera"
+                                              }
+                                              Shape {
+                                                appearance DEF left_arm_link7_material PBRAppearance {
+                                                  roughness 1
+                                                  metalness 0
+                                                }
+                                                geometry DEF left_arm_link7 Mesh {
+                                                  url [
+                                                    "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/left_arm_link7.STL"
+                                                  ]
+                                                }
+                                              }
+                                              SliderJoint {
+                                                jointParameters JointParameters {
+                                                  position -3.590777019563223e-12
+                                                  axis 0 -1 0
+                                                }
+                                                device [
+                                                  LinearMotor {
+                                                    name "left_finger_joint1"
+                                                    maxVelocity 1
+                                                    minPosition -3.781392243030572e-12
+                                                    maxPosition 0.013
+                                                    maxForce 100
+                                                  }
+                                                  PositionSensor {
+                                                    name "left_finger_joint1_sensor"
+                                                  }
+                                                ]
+                                                endPoint Solid {
+                                                  translation 0 -0.012999999996409222 -0.1435
+                                                  children [
+                                                    Shape {
+                                                      appearance DEF left_finger_link1_material PBRAppearance {
+                                                        roughness 1
+                                                        metalness 0
+                                                      }
+                                                      geometry DEF left_finger_link1 Mesh {
+                                                        url [
+                                                          "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/left_finger_link1.STL"
+                                                        ]
+                                                      }
+                                                    }
+                                                  ]
+                                                  name "left_finger_link1"
+                                                  boundingObject USE left_finger_link1
+                                                  physics Physics {
+                                                    density -1
+                                                    mass 0.004045
+                                                    centerOfMass [
+                                                      0 -0.004118 0.004811
+                                                    ]
+                                                    inertiaMatrix [
+                                                      6.109922e-07 6.598687e-07 1.602183e-07
+                                                      -1.556261e-20 3.512854e-21 8.70646e-08
+                                                    ]
+                                                  }
+                                                  linearVelocity -1.0805026163380912e-05 8.321691658958596e-06 -2.191072121979552e-07
+                                                  angularVelocity 1.2789805246319388e-05 1.2529239344308317e-05 4.320697896048595e-07
+                                                }
+                                              }
+                                              SliderJoint {
+                                                jointParameters JointParameters {
+                                                  position -4.0051944230629974e-12
+                                                  axis 0 -1 0
+                                                }
+                                                device [
+                                                  LinearMotor {
+                                                    name "left_finger_joint2"
+                                                    maxVelocity 1
+                                                    minPosition -4.186233871730738e-12
+                                                    maxPosition 0.013
+                                                    maxForce 100
+                                                  }
+                                                  PositionSensor {
+                                                    name "left_finger_joint2_sensor"
+                                                  }
+                                                ]
+                                                endPoint Solid {
+                                                  translation 0 0.013000000004005193 -0.1435
+                                                  children [
+                                                    Shape {
+                                                      appearance DEF left_finger_link2_material PBRAppearance {
+                                                        roughness 1
+                                                        metalness 0
+                                                      }
+                                                      geometry DEF left_finger_link2 Mesh {
+                                                        url [
+                                                          "//wsl.localhost/Ubuntu-22.04/home/pyh/ros2_arm/src/assembly_robot/resource/asmb_robot/meshes/left_finger_link2.STL"
+                                                        ]
+                                                      }
+                                                    }
+                                                  ]
+                                                  name "left_finger_link2"
+                                                  boundingObject USE left_finger_link2
+                                                  physics Physics {
+                                                    density -1
+                                                    mass 0.004045
+                                                    centerOfMass [
+                                                      0 0.004118 0.004811
+                                                    ]
+                                                    inertiaMatrix [
+                                                      6.109922e-07 6.598687e-07 1.602183e-07
+                                                      -6.715899e-21 4.250825e-20 -8.70646e-08
+                                                    ]
+                                                  }
+                                                  linearVelocity -1.0819821204368154e-05 8.321694252498073e-06 2.1876378719793938e-07
+                                                  angularVelocity 1.2789805246699382e-05 1.252923933615859e-05 4.3206936284470116e-07
+                                                }
+                                              }
+                                            ]
+                                            name "left_arm_link7"
+                                            boundingObject USE left_arm_link7
+                                            physics Physics {
+                                              density -1
+                                              mass 0.235934
+                                              centerOfMass [
+                                                0.007147 -0.002293 -0.07377
+                                              ]
+                                              inertiaMatrix [
+                                                9.625577e-05 6.877059e-05 6.395129e-05
+                                                1.485596e-07 1.560237e-06 2.866852e-08
+                                              ]
+                                            }
+                                            linearVelocity -9.998070245458953e-06 7.494503602868859e-06 -1.1903018757869197e-07
+                                            angularVelocity 1.278980606427156e-05 1.2529240156648894e-05 4.320695166129739e-07
+                                          }
+                                        }
+                                      ]
+                                      name "left_arm_Link6"
+                                      boundingObject USE left_arm_Link6
+                                      physics Physics {
+                                        density -1
+                                        mass 0.085287
+                                        centerOfMass [
+                                          -0.020584 0 -0.039023
+                                        ]
+                                        inertiaMatrix [
+                                          5.888649e-05 7.277365e-05 4.777198e-05
+                                          -1.043216e-08 -2.040591e-05 -8.946056e-09
+                                        ]
+                                      }
+                                      linearVelocity -8.725652915137822e-06 6.2081605582245895e-06 -2.935367354345584e-07
+                                      angularVelocity 1.2789906597382604e-05 1.25293489383951e-05 7.137235615004119e-07
+                                    }
+                                  }
+                                ]
+                                name "left_arm_Link5"
+                                boundingObject USE left_arm_Link5
+                                physics Physics {
+                                  density -1
+                                  mass 0.114969
+                                  centerOfMass [
+                                    0.024693 0 -0.028033
+                                  ]
+                                  inertiaMatrix [
+                                    0.0002144867 0.000191507 0.0001003283
+                                    8.181937e-16 3.957878e-05 -8.024542e-10
+                                  ]
+                                }
+                                linearVelocity -7.637557240122941e-06 5.182292120740404e-06 -3.0954241115773407e-07
+                                angularVelocity 1.1037507034275722e-05 1.2529563992829887e-05 7.136393215770006e-07
+                              }
+                            }
+                          ]
+                          name "left_arm_Link4"
+                          boundingObject USE left_arm_Link4
+                          physics Physics {
+                            density -1
+                            mass 0.477208
+                            centerOfMass [
+                              1.1e-05 -0.039274 -0.10245
+                            ]
+                            inertiaMatrix [
+                              0.0007971724 0.0007531362 0.0004258707
+                              3.442374e-08 -2.661929e-07 -0.0001115072
+                            ]
+                          }
+                          linearVelocity -6.564850364299724e-06 4.200174084036044e-06 1.4015096326164762e-07
+                          angularVelocity 1.1037851310477156e-05 1.252994517533268e-05 1.7545222361559943e-06
+                        }
+                      }
+                    ]
+                    name "left_arm_Link3"
+                    boundingObject USE left_arm_Link3
+                    physics Physics {
+                      density -1
+                      mass 0.12999
+                      centerOfMass [
+                        0 0.025876 -0.041251
+                      ]
+                      inertiaMatrix [
+                        0.0003053546 0.0003401674 0.0001153737
+                        -5.23857e-13 -4.57958e-09 5.096818e-05
+                      ]
+                    }
+                    linearVelocity -3.796022780662855e-06 2.1888263684425633e-06 2.85459665738576e-07
+                    angularVelocity 1.1038716913521615e-05 1.8882151771922033e-05 1.754303827581076e-06
+                  }
+                }
+              ]
+              name "left_arm_Link2"
+              boundingObject USE left_arm_Link2
+              physics Physics {
+                density -1
+                mass 0.470284
+                centerOfMass [
+                  -0.043622 -1.8e-05 -0.104081
+                ]
+                inertiaMatrix [
+                  0.0006846853 0.0007651558 0.0004224361
+                  -3.442374e-08 -0.0001101411 2.675406e-07
+                ]
+              }
+              linearVelocity -1.9552256835875745e-06 1.1404419155727571e-06 -2.5294867222502256e-07
+              angularVelocity 1.1040062432274861e-05 1.8883607729071865e-05 -8.998692394824881e-11
+            }
+          }
+        ]
+        name "left_arm_Link1"
+        boundingObject USE left_arm_Link1
+        physics Physics {
+        }
+        linearVelocity 4.9823297530821325e-09 -4.3068796006370744e-09 -2.1202421576360254e-07
+        angularVelocity -1.9804165236949743e-09 1.888584679314366e-05 -3.67567216872332e-10
+      }
+    }
+  ]
+  name "asmb_robot"
+  boundingObject USE base_link
+  controller "<extern>"
+}
+Table {
+  translation 0.6 0 0
+}
+Can {
+  hidden linearVelocity_0 3.6539759265702533e-07 -0.0002853142926831622 -8.541334517152188e-05
+  hidden angularVelocity_0 0.004671554057057387 5.98242258633302e-06 1.2994596892527193e-10
+  translation 0.3947380358458343 0.10714512335549956 0.801073087186784
+  rotation -0.9999720952317418 0.005756983034574308 0.004760872207896566 0.0009003236254136576
+  name "can(1)"
+  color 1 0 0
+  mass 0.3
+}
+Can {
+  hidden linearVelocity_0 8.998438257133033e-05 -7.693550533414923e-07 2.221567410382862e-05
+  hidden angularVelocity_0 1.2597288443440858e-05 0.0014733817609527368 8.586204461320359e-12
+  translation 0.5094713355605136 -0.1512282782299154 0.8010740150561606
+  rotation 0.0033760691852070808 0.9999881439172006 -0.003509156862952142 0.000986007187919413
+  color 1 0 0
+  mass 0.3
+}
+Wall {
+  translation -0.1 0.25 0
+  size 0.1 0.1 0.1
+  appearance Roughcast {
+    colorOverride 1 0 0
+    textureTransform TextureTransform {
+      scale 2.4 1
+    }
+  }
+}
+Wall {
+  translation 0.79 0.13 0.74
+  name "wall(1)"
+  size 0.1 0.1 0.1
+  appearance Roughcast {
+    colorOverride 1 0 0
+    textureTransform TextureTransform {
+      scale 2.4 1
+    }
+  }
 }

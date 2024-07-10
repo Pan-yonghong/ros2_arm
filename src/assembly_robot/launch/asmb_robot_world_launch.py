@@ -46,7 +46,8 @@ def generate_launch_description():
         ),
         webots,                 
         webots._supervisor,
-        # 当Webots进程退出时，注册的事件处理器会触发，发送一个Shutdown事件，导致所有由当前launch文件启动的节点关闭，确保干净的退出过程。
+        
+        # This action will kill all nodes once the Webots simulation has exited
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(
                 target_action=webots,
